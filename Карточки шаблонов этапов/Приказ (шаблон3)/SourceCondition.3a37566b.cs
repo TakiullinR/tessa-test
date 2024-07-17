@@ -1,1 +1,1 @@
-﻿(await GetCardAsync()).RouteOrder.OrderName == "Тип маршрута 3"
+﻿(await GetCardAsync()).SiRouteOrder.OrderName == "Тип маршрута 3"
