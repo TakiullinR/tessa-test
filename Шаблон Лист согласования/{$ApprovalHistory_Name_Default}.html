@@ -1,0 +1,758 @@
+﻿<#
+#reference System.Web;
+#using System.Web;
+#using System.Data;
+#using Tessa.Cards.Caching;
+#using Tessa.Extensions.Default.Shared; 
+#using Tessa.Extensions.Default.Shared.VirtualFiles; 
+#using Tessa.Extensions.Default.Shared.Workflow.KrProcess;
+
+// Т.к. в файле есть ссылка на его другую версию, пишем ID виртуального файла и печатной версии файла здесь
+var virtualFileID = KrVirtualFilesHelper.ApprovalListFileID;
+var printableVersionID = KrVirtualFilesHelper.ApprovalListPrintableVersionID;
+
+// Инициализация важных параметров
+var ascendingOrder = (await context.Container.Resolve<ICardCache>().Cards.GetAsync("KrSettings")).GetValue()
+                    .Sections["KrSettings"]
+                    .RawFields
+                    .Get<bool>("AscendingApprovalList");
+
+var webClient = context.Session.IsWebClient();
+var webAddress = await CardHelper.TryGetWebAddressAsync(context.Container.Resolve<ICardCache>());
+var isPrintable = context.Info.TryGet<bool>("PrintableList");
+var cardID = await context.GetCardIDAsync();
+
+var ignoreTypes = new Guid[]
+{   new Guid(0x75af7df8, 0xeeb9, 0x4d5d, 0x8a, 0xf9, 0x53, 0x82, 0x15, 0x9f, 0xdb, 0xb2),  // 75af7df8-eeb9-4d5d-8af9-5382159fdbb2
+    new Guid(0xfc6f6e71, 0xcb9c, 0x4902, 0xb9, 0xf5, 0xd6, 0xba, 0x22, 0x31, 0x74, 0xd8),  // fc6f6e71-cb9c-4902-b9f5-d6ba223174d8
+    DefaultTaskTypes.KrRequestCommentTypeID,
+    DefaultTaskTypes.KrInfoRequestCommentTypeID
+};
+
+string resultPercent = isPrintable ? "47" : "37";
+
+context.Info["WebClient"] = webClient;
+context.Info["WebAddress"] = webAddress;
+context.Info["AscendingOrder"] = ascendingOrder;
+context.Info["IsPrintable"] = isPrintable;
+context.Info["IgnoreTypes"] = ignoreTypes;
+context.Info["ResultPercent"] = resultPercent;
+
+string FormatText(string text)
+{
+    return text != null ? HttpUtility.HtmlEncode(text) : null;
+}
+
+string FormatFileLink(KrHistoryFileItem fileItem)
+{
+    string encodedFileName = FormatText(fileItem.FileName);
+
+    if (isPrintable)
+    {
+        return encodedFileName;
+    }
+    
+    string linkText = webClient
+        ? CardHelper.GetWebFileLink(
+            webAddress,
+            cardID,
+            fileItem.FileID,
+            fileItem.VersionRowID,
+            fileName: encodedFileName,
+            asHtml: false)
+        : CardHelper.GetLink(
+            context.Session,
+            cardID,
+            fileItem.FileID,
+            fileItem.VersionRowID);
+
+    return "<a " + (webClient ? "target=\"_blank\" rel=\"noopener noreferrer\"" : string.Empty) + "href=\"" + linkText + "\">" + encodedFileName + "</a>";
+}
+
+context.Info["FormatFileLinkFunc"] = new Func<KrHistoryFileItem, string>(x => FormatFileLink(x));
+
+// Метод для получения квантов с момента создания, с момента взятия в работу и момента до истечения срока задания (или расчет просрочки)
+async Task<Dictionary<Guid, (int?, int?, int?)>> GetApprovalTaskItemsAsync(IDbScope dbScope)
+{
+    var items = new Dictionary<Guid, (int?, int?, int?)>();
+    await using (dbScope.Create())
+    {
+        var db = dbScope.Db;
+        var builderFactory = dbScope.BuilderFactory;
+
+        db
+            .SetCommand(
+                builderFactory
+                    .Select().C("t", "RowID")
+                    .CastAs(b => b.C("cq4", "QuantNumber").Substract().C("cq1", "QuantNumber"), SchemeDbType.Int32).As("CreatedQuants")
+                    .CastAs(b => b.C("cq4", "QuantNumber").Substract().C("cq2", "QuantNumber"), SchemeDbType.Int32).As("InProgressQuants")
+                    .CastAs(b => b.C("cq3", "QuantNumber").Substract().C("cq4", "QuantNumber"), SchemeDbType.Int32).As("RemainingQuants")
+                    .From("Tasks", "t").NoLock()
+                    .InnerJoin("KrActiveTasks", "kat").NoLock()
+                        .On().C("kat", "TaskID").Equals().C("t", "RowID")
+                    .LeftJoinLateral(b => b
+                        .Select()
+                            .Top(1).C("q", "QuantNumber")
+                        .From("CalendarQuants", "q").NoLock()
+                        .Where()
+                            .C("q", "StartTime").LessOrEquals()
+                            .If(Dbms.SqlServer,
+                                v => v.Q(" DATEADD(minute, ").C("t", "TimeZoneUtcOffsetMinutes").Q(", ")
+                                    .C("t", "Created").Q(")"))
+                            .ElseIf(Dbms.PostgreSql,
+                                v => v.Q("(").C("t", "Created").Add().C("t", "TimeZoneUtcOffsetMinutes")
+                                    .Q(" * interval '1 minute')"))
+                            .ElseThrow()
+                        .OrderBy("q", "StartTime", SortOrder.Descending)
+                        .Limit(1),
+                        "cq1")
+                    .LeftJoinLateral(b => b
+                        .Select()
+                            .Top(1).C("q", "QuantNumber")
+                        .From("CalendarQuants", "q").NoLock()
+                        .Where()
+                            .C("q", "StartTime").LessOrEquals()
+                            .If(Dbms.SqlServer,
+                                v => v.Q(" DATEADD(minute, ").C("t", "TimeZoneUtcOffsetMinutes").Q(", ")
+                                    .C("t", "InProgress").Q(")"))
+                            .ElseIf(Dbms.PostgreSql,
+                                v => v.Q("(").C("t", "InProgress").Add().C("t", "TimeZoneUtcOffsetMinutes")
+                                    .Q(" * interval '1 minute')"))
+                            .ElseThrow()
+                        .OrderBy("q", "StartTime", SortOrder.Descending)
+                        .Limit(1),
+                        "cq2")
+                    .LeftJoinLateral(b => b
+                        .Select()
+                            .Top(1).C("q", "QuantNumber")
+                        .From("CalendarQuants", "q").NoLock()
+                        .Where()
+                            .C("q", "StartTime").LessOrEquals()
+                            .If(Dbms.SqlServer,
+                                v => v.Q(" DATEADD(minute, ").C("t", "TimeZoneUtcOffsetMinutes").Q(", ")
+                                    .C("t", "Planned").Q(")"))
+                            .ElseIf(Dbms.PostgreSql,
+                                v => v.Q("(").C("t", "Planned").Add().C("t", "TimeZoneUtcOffsetMinutes")
+                                    .Q(" * interval '1 minute')"))
+                            .ElseThrow()
+                        .OrderBy("q", "StartTime", SortOrder.Descending)
+                        .Limit(1),
+                        "cq3")
+                    .LeftJoinLateral(b => b
+                        .Select()
+                            .Top(1).C("q", "QuantNumber")
+                        .From("CalendarQuants", "q").NoLock()
+                        .Where()
+                            .C("q", "StartTime").LessOrEquals()
+                            .If(Dbms.SqlServer,
+                                v => v.Q(" DATEADD(minute, ").C("t", "TimeZoneUtcOffsetMinutes").Q(", ")
+                                    .P("UtcNow").Q(")"))
+                            .ElseIf(Dbms.PostgreSql,
+                                v => v.Q("(").P("UtcNow").Add().C("t", "TimeZoneUtcOffsetMinutes")
+                                    .Q(" * interval '1 minute')"))
+                            .ElseThrow()
+                        .OrderBy("q", "StartTime", SortOrder.Descending)
+                        .Limit(1),
+                        "cq4")
+                    .Where().C("t", "ID").Equals().P("ID")
+                    .Build(),
+                db.Parameter("ID", cardID),
+                db.Parameter("UtcNow", DateTime.UtcNow))
+            .LogCommand();
+
+        await using (var reader = await db.ExecuteReaderAsync())
+        {
+            while (await reader.ReadAsync())
+            {
+                items[reader.GetValue<Guid>(0)] = (reader.GetValue<int?>(1), reader.GetValue<int?>(2), reader.GetValue<int?>(3));
+            }
+        }
+    }
+
+    return items;
+}
+
+// Метод для получения необходимой информации о файлах для истории заданий, а также расчет квантов с момента завершения задания
+async Task<Dictionary<Guid, KrHistoryItem>> GetApprovalHistoryItemsAsync(
+            IDbScope dbScope)
+{
+    var items = new Dictionary<Guid, KrHistoryItem>();
+    await using (dbScope.Create())
+    {
+        var db = dbScope.Db;
+        var builder = dbScope.BuilderFactory
+            .Select()
+                .C("th", "RowID")
+                .C("fv", "ID", "Created", "RowID", "Name")
+                .C("kr", "Cycle")
+                .CastAs(b => b.C("cq2", "QuantNumber").Substract().C("cq1", "QuantNumber"), SchemeDbType.Int32).As("CompletedQuants")
+            .From("KrApprovalHistory", "kr").NoLock()
+            .InnerJoin("TaskHistory", "th").NoLock()
+                .On().C("th", "RowID").Equals().C("kr", "HistoryRecord")
+            .LeftJoinLateral(b => b
+                .Select().C("v", "RowID", "ID", "Created", "Name")
+                .From("Files", "f").NoLock()
+                .InnerJoin("FileVersions", "v").NoLock()
+                    .On().C("v", "ID").Equals().C("f", "RowID")
+                .Where().C("f", "ID").Equals().C("th", "ID")
+                    .And().C("v", "StateID").Equals().V(1)
+                    .And().C("v", "CreatedByID").Equals().C("th", "UserID")
+                    .And().C("v", "Created").Greater().C("th", "Created")
+                    .And().C("v", "Created").LessOrEquals().C("th", "Completed"),
+                "fv")
+            .LeftJoinLateral(b => b
+                .Select()
+                    .Top(1).C("q", "QuantNumber")
+                .From("CalendarQuants", "q").NoLock()
+                .Where()
+                    .C("q", "StartTime").LessOrEquals()
+                    .If(Dbms.SqlServer,
+                        v => v.Q(" DATEADD(minute, ").C("th", "TimeZoneUtcOffsetMinutes").Q(", ")
+                            .C("th", "Created").Q(")"))
+                    .ElseIf(Dbms.PostgreSql,
+                        v => v.Q("(").C("th", "Created").Add().C("th", "TimeZoneUtcOffsetMinutes")
+                            .Q(" * interval '1 minute')"))
+                    .ElseThrow()
+                .OrderBy("q", "StartTime", SortOrder.Descending)
+                .Limit(1),
+                "cq1")
+            .LeftJoinLateral(b => b
+                .Select()
+                    .Top(1).C("q", "QuantNumber")
+                .From("CalendarQuants", "q").NoLock()
+                .Where()
+                    .C("q", "StartTime").LessOrEquals()
+                    .If(Dbms.SqlServer,
+                        v => v.Q(" DATEADD(minute, ").C("th", "TimeZoneUtcOffsetMinutes").Q(", ")
+                            .C("th", "Completed").Q(")"))
+                    .ElseIf(Dbms.PostgreSql,
+                        v => v.Q("(").C("th", "Completed").Add().C("th", "TimeZoneUtcOffsetMinutes")
+                            .Q(" * interval '1 minute')"))
+                    .ElseThrow()
+                .OrderBy("q", "StartTime", SortOrder.Descending)
+                .Limit(1),
+                "cq2")
+            .Where().C("th", "ID").Equals().P("ID")
+                .And().C("th", "Completed").IsNotNull()
+                .And().C("th", "TypeID").NotIn(ignoreTypes)
+                .And().Not().E(q => 
+                    q.C("th", "TypeID").Equals().V(DefaultTaskTypes.KrInfoAdditionalApprovalTypeID)
+                        .And().C("th", "OptionID").Equals().V(DefaultCompletionOptions.AdditionalApproval))
+            .OrderBy("kr", "Cycle", SortOrder.Descending)
+            .By("th", "Completed", SortOrder.Descending)
+            .By("th", "Created", SortOrder.Descending)
+            .By("th", "RowID", SortOrder.Ascending)
+            .By("fv", "Name", SortOrder.Ascending)
+            .By("fv", "RowID", SortOrder.Ascending);
+
+        db
+            .SetCommand(
+                builder.Build(),
+                db.Parameter("ID", cardID))
+            .LogCommand();
+
+        KrHistoryItem prevItem = null;
+        await using (var reader = await db.ExecuteReaderAsync())
+        {
+            while (await reader.ReadAsync())
+            {
+                Guid itemRowID = reader.GetGuid(0);
+                if (prevItem != null && prevItem.RowID == itemRowID)
+                {
+                    // добавляем файлы к таску, причём хотя бы один файл уже добавлен
+                    Guid fileID = reader.GetGuid(1);
+                    var lastItem = prevItem.Files[prevItem.Files.Count - 1];
+                    if (lastItem.FileID != fileID)
+                    {
+                        // для каждого файла записывается только одна версия на таск
+                        prevItem.Files.Add(new KrHistoryFileItem
+                        {
+                            FileID = fileID,
+                            Modified = reader.GetDateTimeUtc(2),
+                            VersionRowID = reader.GetGuid(3),
+                            FileName = reader.GetString(4),
+                        });
+                    }
+                    else
+                    {
+                        // когда файл уже был добавлен для строки в истории заданий, то мы должны выбрать последнюю версию
+                        DateTime created = reader.GetDateTimeUtc(2);
+
+                        if (lastItem.Modified < created)
+                        {
+                            // эта версия более новая, чем предыдущая, заменяем её
+                            lastItem.Modified = created;
+                            lastItem.VersionRowID = reader.GetGuid(3);
+                            lastItem.FileName = reader.GetString(4);
+                        }
+                    }
+                }
+                else
+                {
+                    prevItem = new KrHistoryItem();
+
+                    Guid? fileID = reader.GetValue<Guid?>(1);
+                    if (fileID.HasValue)
+                    {
+                        // добавляется первый файл
+                        prevItem.Files = new List<KrHistoryFileItem>
+                        {
+                            new KrHistoryFileItem
+                            {
+                                FileID = fileID.Value,
+                                Modified = reader.GetDateTimeUtc(2),
+                                VersionRowID = reader.GetGuid(3),
+                                FileName = reader.GetString(4),
+                            }
+                        };
+                    }
+
+                    prevItem.RowID = itemRowID;
+                    prevItem.Cycle = reader.GetValue<short>(5);
+                    prevItem.CompletedQuants = reader.GetValue<int?>(6);
+
+                    items[itemRowID] = prevItem;
+                }
+            }
+        }
+    }
+
+    return items;
+}
+#>
+
+<html>
+    <!-- Html Title begin --><title>{$ApprovalHistory_Header}</title><!-- Html Title end -->
+    <head><meta http-equiv=Content-Type content='text/html; charset=utf-8'></head>
+
+    <!-- Css Default begin -->
+    <style>
+        body
+        {
+            padding-right: 0px;
+            padding-left: 0px;
+            font-size: 11px;
+            background: #fff;
+            padding-bottom: 0px;
+            margin: 0px;
+            padding-top: 0px;
+            font-family: tahoma, verdana, arial, sans-serif;
+            text-align: left
+        }
+
+        div.h1
+        {
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.4em;
+            padding-top: 4px;
+            padding-bottom: 4px;
+        }
+        
+        div.h2
+        {
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            padding-bottom: 4px;
+        }
+        
+        div.link
+        {
+            text-align: right;
+            padding-right: 10px;
+        }
+
+        div.group
+        {
+            display: inline-block;
+            font-weight: bold;
+            font-size: 11px;
+            margin: 3px 0px 5px;
+            overflow: hidden;
+            color: #36638e;
+            border-bottom: #b9c4da 1px solid
+        }
+        div.group
+        {
+            display: block
+        }
+        div.group-lc
+        {
+            float: left
+        }
+        div.group-rc
+        {
+            float: right
+        }
+
+        div.group-data
+        {
+            display: inline-block;
+            margin: 10px;
+            overflow: hidden;
+        }
+        div.group-data
+        {
+            display: block
+        }
+
+        .table
+        {
+            padding-right: 0px;
+            padding-left: 0px;
+            padding-bottom: 0px;
+            padding-top: 0px;
+            margin: 0px;
+            width: 100%;
+            border-collapse: collapse;
+            border-top: #b9c4da 1px solid;
+            border-bottom: #b9c4da 1px solid;
+            border-right: #b9c4da 1px solid;
+            border-left: #b9c4da 1px solid;
+        }
+        .table td
+        {
+            font-size: 0.7em;
+            padding-right: 4px;
+            padding-left: 4px;
+            padding-bottom: 4px;
+            padding-top: 4px;
+            vertical-align: top;
+            text-align: center;
+            border-bottom: #b9c4da 1px solid;
+            border-right: #b9c4da 1px solid;
+            border-left: #b9c4da 1px solid;
+            border-top: #b9c4da 1px solid;
+        }
+        .table th
+        {
+            font-weight: bold;
+            font-size: 0.7em;
+            padding-right: 4px;
+            padding-left: 4px;
+            padding-bottom: 4px;
+            padding-top: 4px;
+            vertical-align: top;
+            text-align: center;
+            border-bottom: #b9c4da 1px solid;
+            border-right: #b9c4da 1px solid;
+            border-left: #b9c4da 1px solid;
+            border-top: #b9c4da 1px solid;
+        }
+    </style>
+    <!-- Css Default end -->
+    <!-- Css begin--><!-- Css end-->
+
+    <body>
+        <!-- Top begin --><!-- Top end -->
+        <div class='h1'><!-- Title begin -->{$ApprovalHistory_Header}<!-- Title end --></div>
+        <div class='h2'><!-- Header begin --><#
+
+        // Расчет параметров заголовка
+        var fullNumber = await context.GetValueFromPlaceholderAsync<string>("f:DocumentCommonInfo.FullNumber");
+        var creationDate = await context.GetValueFromPlaceholderAsync<DateTime?>("f:DocumentCommonInfo.CreationDate");
+        var subject = await context.GetValueFromPlaceholderAsync<string>("f:DocumentCommonInfo.Subject");
+        var typeCaption = await context.GetValueFromPlaceholderAsync<string>("f:DocumentCommonInfo.DocTypeTitle") ?? await context.GetValueFromPlaceholderAsync<string>("f:Instances.TypeID->Types.Caption");       
+        
+        if (!string.IsNullOrEmpty(fullNumber))
+        {
+            if (creationDate.HasValue)
+            {
+                textBuilder.Append(
+                    LocalizationManager.Format(
+                        "$ApprovalHistory_DocumentTitleWithDate", 
+                        typeCaption, 
+                        fullNumber, 
+                        FormattingHelper.FormatDate(creationDate.Value, convertToLocal: false)));
+            }
+            else
+            {
+                textBuilder.Append(
+                    LocalizationManager.Format(
+                        "$ApprovalHistory_DocumentTitleNoDate", 
+                        typeCaption, 
+                        fullNumber));
+            }
+        }
+
+        if (!string.IsNullOrEmpty(subject))
+        {
+            if (!string.IsNullOrEmpty(fullNumber))
+            {
+                textBuilder.Append("<br/>");
+            }
+
+            textBuilder.Append("&lt;{f:DocumentCommonInfo.Subject}&gt;");
+        } #>
+        <!-- Header end --></div>
+        
+        <#
+        // Добавление ссылки на карточку и печатную форму файла, если они нужны
+        if (!isPrintable
+            && (!webClient || !string.IsNullOrWhiteSpace(webAddress)))
+        { #>
+        <div class='link'><!-- Card Link begin -->
+            <#
+            if (webClient)
+            { 
+                var linkText = CardHelper.GetWebFileLink(
+                    webAddress,
+                    await context.GetCardIDAsync(),
+                    virtualFileID,
+                    printableVersionID,
+                    fileName: LocalizationManager.Localize("$ApprovalHistory_FileName_Printable"),
+                    fileTypeName: DefaultFileTypes.KrVirtualFile,
+                    asHtml: true);
+            #>
+            
+            <a target="_blank" rel="noopener noreferrer" href="<#= linkText #>">{$ApprovalHistory_PrintableVersion}</a>&nbsp;&nbsp;&nbsp;
+            <a target="_blank" rel="noopener noreferrer" href="<#= CardHelper.GetWebLink(webAddress, await context.GetCardIDAsync()) #>">{$ApprovalHistory_OpenCard}</a>
+            <#
+            } else { #>
+            
+            <a href="<#= CardHelper.GetLink(
+                    context.Session,
+                    await context.GetCardIDAsync(),
+                    virtualFileID,
+                    printableVersionID) #>">{$ApprovalHistory_PrintableVersion}</a>&nbsp;&nbsp;&nbsp;
+            <a href="<#= CardHelper.GetLink(context.Session, await context.GetCardIDAsync()) #>">{$ApprovalHistory_OpenCard}</a>
+        <!-- Card Link end --></div> <#
+        }}
+
+        if (!isPrintable)
+        {       
+            var taskItems = await GetApprovalTaskItemsAsync(context.DbScope);
+            
+            if (taskItems.Count > 0)
+            {
+                context.Info["TaskItems"] = taskItems;
+                context.Info["TaskItemsCounter"] = taskItems.Count;
+        #>
+        <!-- Tasks begin -->
+        <div class='group'>
+            <div class='group-lc'>
+                &nbsp;{$ApprovalHistory_ActiveTasks}
+            </div>
+        </div>
+        <div class='group-data'>
+            <table cellpadding='0' cellspacing='0' class='table'>
+                <tr>
+                    <th width='3%'></th>
+                    <th width='18%'>{$ApprovalHistory_Role}</th>
+                    <th width='18%'>{$ApprovalHistory_CurrentPerformer}</th>
+					<th width='18%'>Департамент</th>
+                    <th width='22%'>{$ApprovalHistory_InProgressFrom}</th>
+                    <th width='22%'>{$ApprovalHistory_CreatedAt}</th>
+                    <th width='17%'>{$ApprovalHistory_TimeLeft}</th>
+                </tr>
+                <_row>
+                <tr>
+                    <##= // Инициализация таблицы о заданиях. Здесь можно поменять сортировку вывода заданий
+                    "{t:Tasks.RowID-(TaskID)->KrActiveTasks.TaskID order by " + 
+                    "Tasks.Created " + (context.Info.Get<bool>("AscendingOrder") ? "asc" : "desc") + 
+                    "}" 
+                    ##>
+                    <# // Если для данного задания нет дополнительной информации о задании, данную строку не выводим
+                    if (!context.Info.Get<Dictionary<Guid, (int?, int?, int?)>>("TaskItems").TryGetValue(await context.GetValueFromPlaceholderAsync<Guid>("t:Tasks.RowID"), out var item))
+                    {
+                        return string.Empty;
+                    }
+                    #>
+                    
+                    <td width='3%'><# // Вывод номера задания. Может быть обратным
+                    if (context.Info.Get<bool>("AscendingOrder")) 
+                    { 
+                        textBuilder.Append("{n}"); 
+                    } 
+                    else 
+                    { 
+                        var cnt = context.Info.Get<int>("TaskItemsCounter"); 
+                        textBuilder.Append(cnt); 
+                        context.Info["TaskItemsCounter"] = cnt - 1; 
+                    } #></td>
+                    <td width='18%'>{t:Tasks.RoleName}</td>
+                    <td width='18%'>{t:Tasks.UserName}</td>
+					<td>{t:TaskHistory.RoleID-(UserID)->RoleUsers.ID->DepartmentRoles.ID->Roles.Name}</td>
+                    <td width='22%'>{t:Tasks.InProgress:dd.MM.yyyy HH\:mm}
+                    <#
+                    if (item.Item2.HasValue)
+                    {
+                        textBuilder.AppendFormat(" ({0})", (item.Item2.Value < 0 ? "{$Format_DateDiff_Overdue}&nbsp;" : null) + FormattingHelper.FormatDateDiff(item.Item2.Value).Replace(" ", "&nbsp;"));
+                    } #></td>
+                    <td width='22%'>{t:Tasks.Created:dd.MM.yyyy HH\:mm}
+                    <#
+                    if (item.Item1.HasValue)
+                    {
+                        textBuilder.AppendFormat(" ({0})", (item.Item1.Value < 0 ? "{$Format_DateDiff_Overdue}&nbsp;" : null) + FormattingHelper.FormatDateDiff(item.Item1.Value).Replace(" ", "&nbsp;"));
+                    } #></td>
+                    <td width='17%'<#
+                    textBuilder.Append(item.Item3 < 0 ? "style='color:#cc0000'>" : ">");
+                    
+                    if (item.Item3.HasValue)
+                    {
+                        textBuilder.Append((item.Item3.Value < 0 ? "{$Format_DateDiff_Overdue}&nbsp;" : null) + FormattingHelper.FormatDateDiff(item.Item3.Value).Replace(" ", "&nbsp;"));
+                    } #></td>
+                </tr>
+                </_row>
+            </table>
+        </div>
+        <!-- Tasks end -->
+        <#  } // taskItems.Count > 0
+        } // !isPrintable #>    
+        
+        <#
+        var historyItems = await GetApprovalHistoryItemsAsync(context.DbScope);
+        if (historyItems.Count > 0)
+        {
+            context.Info["HistoryItems"] = historyItems;
+        #>
+        <!-- Task History begin -->
+                        
+        <_group>
+        <## 
+            var ascendingOrder = context.Info.Get<bool>("AscendingOrder");
+            textBuilder.Append("{t:TaskHistory.RowID-(HistoryRecord)->KrApprovalHistory.Cycle" +
+                " order by KrApprovalHistory.Cycle " + (ascendingOrder ? "asc" : "desc") +
+                ", TaskHistory.Completed " + (ascendingOrder ? "asc" : "desc") +
+                ", TaskHistory.Created " + (ascendingOrder ? "asc" : "desc") +
+                ", TaskHistory.RowID " + (ascendingOrder ? "desc" : "asc") +
+                "}");           
+        ##>
+        <#
+            if (context.GroupBy.Fields.Count == 0)
+            {
+                return string.Empty;
+            }
+            
+            var ascendingOrder = context.Info.Get<bool>("AscendingOrder");
+            var historyItems = context.Info.Get<Dictionary<Guid, KrHistoryItem>>("HistoryItems");
+            var currentCycle = (short)context.GroupBy.Fields[0].Value;
+            var itemsCount = historyItems.Values.Count(p => p.Cycle == currentCycle);
+            if (ascendingOrder)
+            {
+                context.Info["HistoryItemsCounter"] = 1;
+            }
+            else
+            {
+                context.Info["HistoryItemsCounter"] = itemsCount;
+            }
+            
+            if (itemsCount == 0)
+            {
+                return string.Empty;
+            }
+        #>
+        <!-- Cycle Title begin -->
+        <# if (!context.Info.Get<bool>("IsPrintable") && currentCycle > 0) { #>     
+        <div class='group'>
+            <div class='group-lc'>
+                &nbsp;{$ApprovalHistory_ApprovalCycle} {t:TaskHistory.RowID-(HistoryRecord)->KrApprovalHistory.Cycle}
+            </div>
+        </div>
+        <# } #>
+        <!-- Cycle Title end -->
+        
+        <!-- Cycle Body begin -->
+        <div class='group-data'>
+            <table cellpadding='0' cellspacing='0' class='table'>
+                <tr>
+                    <th width='3%'></th>
+                    <th width='15%'>{$ApprovalHistory_Employee}</th>
+                    <th width='15%'>{$ApprovalHistory_Role}</th>
+					<th width='15%'>Департамент</th>
+                    <th width='10%'>{$ApprovalHistory_Decision}</th>
+                 <# if (!context.Info.Get<bool>("IsPrintable"))
+                    { #>
+                    <th width='10%'>{$ApprovalHistory_Received}</th>
+                 <# } #>
+                    <!-- Completed Column begin -->
+                    <th width='10%'>{$ApprovalHistory_CompletedAt}</th>
+                    <!-- Completed Column end -->
+                    <th width='<#= context.Info.Get<string>("ResultPercent") #>%'>{$ApprovalHistory_Comment}</th>
+                </tr>
+                
+                <_row>
+                <#
+                if (!context.Info.Get<Dictionary<Guid, KrHistoryItem>>("HistoryItems").TryGetValue(await context.GetValueFromPlaceholderAsync<Guid>("t:TaskHistory.RowID"), out var item))
+                {
+                    return string.Empty;
+                }
+                var ascendingOrder = context.Info.Get<bool>("AscendingOrder");
+                
+                #>
+                
+                <tr>
+                    <td width='3%'><# // Расчет номера строки производится всегда скриптом со счетчиком для каждой группы
+                    var cnt = context.Info.Get<int>("HistoryItemsCounter"); 
+                    textBuilder.Append(cnt); 
+                    if (ascendingOrder) { context.Info["HistoryItemsCounter"] = cnt + 1; } else { context.Info["HistoryItemsCounter"] = cnt - 1; } #></td>
+                    <td width='15%'>{t:TaskHistory.UserName}</td>
+                    <td width='15%'><#
+                        if (await context.GetValueFromPlaceholderAsync<Guid>("t:TaskHistory.TypeID") == DefaultTaskTypes.KrAdditionalApprovalTypeID) { #>
+                        <b>{$ApprovalHistory_AdditionalApproval}</b></br><#
+                        } 
+                        bool hasRoleName = false;
+                        if (!string.IsNullOrEmpty(await context.GetValueFromPlaceholderAsync<string>("t:TaskHistory.UserPosition")))
+                        {
+                            hasRoleName = true;
+                            textBuilder.Append("{t:TaskHistory.UserPosition}");
+                        }
+                        if (!hasRoleName)
+                        {
+                            textBuilder.Append("{t:TaskHistory.RoleName}");
+                        }
+                        #>
+                    </td>
+					<td>{t:TaskHistory.RoleID-(UserID)->RoleUsers.ID->DepartmentRoles.ID->Roles.Name}</td>
+                    <td width='10%'>{t:TaskHistory.OptionCaption}</td><#
+                    if (!context.Info.Get<bool>("IsPrintable"))
+                    { #>
+                    <td width='10%'>{t:TaskHistory.Created:dd.MM.yyyy HH\:mm}</td>
+                 <# } #>
+                    <!-- Completed Column begin -->
+                    <td width='10%'>{t:TaskHistory.Completed:dd.MM.yyyy HH\:mm}<#
+                    
+                    if (item.CompletedQuants.HasValue)
+                    {
+                        textBuilder.AppendFormat(" ({0})", (item.CompletedQuants.Value < 0 ? "{$Format_DateDiff_Overdue}&nbsp;" : null) + FormattingHelper.FormatDateDiff(item.CompletedQuants.Value).Replace(" ", "&nbsp;"));
+                    } #>
+                    </td>
+                    <!-- Completed Column end -->
+                    <td width='<#= context.Info.Get<string>("ResultPercent") #>%' style='text-align:left'>{t:TaskHistory.Result}
+                    <#
+                    if (item.Files != null && item.Files.Count > 0
+                        && (!context.Info.Get<bool>("WebClient")
+                        || !string.IsNullOrEmpty(context.Info.Get<string>("WebAddress"))))
+                    {
+                        if (!string.IsNullOrWhiteSpace(await context.GetValueFromPlaceholderAsync<string>("t:TaskHistory.Result")))
+                        {
+                            textBuilder.Append("<br/>");
+                        }
+
+                        var formatFileLinkFunc = context.Info.Get<Func<KrHistoryFileItem, string>>("FormatFileLinkFunc");
+                        
+                        if (item.Files.Count == 1)
+                        {
+                            textBuilder.Append("{$ApprovalHistory_FileChanged} ");
+                            textBuilder.Append(formatFileLinkFunc(item.Files[0]));
+                        }
+                        else
+                        {
+                            textBuilder.Append("{$ApprovalHistory_FileChanged} ");
+                            textBuilder.Append(string.Join(", ", item.Files.Select(formatFileLinkFunc)));
+                        }
+                    }
+                    #></td>
+                </tr>
+                </_row>
+            </table>
+        </div>
+        </_group>
+        <!-- Cycle Body end -->
+        <!-- Task History end -->
+        <# 
+        } /* historyItems.Count > 0 */ #>
+        <!-- Bottom begin --><!-- Bottom end -->
+    </body>
+</html>

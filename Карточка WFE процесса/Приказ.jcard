@@ -1,0 +1,2263 @@
+﻿[
+  {
+    ".method::int": 2,
+    "Card": {
+      "Created::dtm": "2024-07-16T09:51:58.381487Z",
+      "CreatedByID::uid": "3db19fa0-228a-497f-873a-0250bf0a4ccb",
+      "CreatedByName": "Admin",
+      "Files": null,
+      "Flags::int": 0,
+      "ID::uid": "244a2805-d6a5-457c-aaec-6f01b3276f68",
+      "Info": null,
+      "Modified::dtm": "2024-07-17T15:08:36.892233Z",
+      "ModifiedByID::uid": "3db19fa0-228a-497f-873a-0250bf0a4ccb",
+      "ModifiedByName": "Admin",
+      "Permissions": null,
+      "Sections": {
+        "BusinessProcessButtonRoles": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "BusinessProcessButtonRolesVirtual": {
+          ".table::int": 1,
+          "Rows": [
+            {
+              "ButtonRowID::uid": "1caa9500-0cad-408d-9411-42c1553ce1c8",
+              "RoleID::uid": "7ff52dc0-ff6a-4c9d-ba25-b562c370004d",
+              "RoleName": "Все сотрудники",
+              "RowID::uid": "aea966af-4d48-498a-8867-62493801dba1"
+            }
+          ]
+        },
+        "BusinessProcessButtons": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "BusinessProcessButtonsVirtual": {
+          ".table::int": 1,
+          "Rows": [
+            {
+              "AccessDeniedMessage": null,
+              "ActionGrouping": false,
+              "AskConfirmation": false,
+              "ButtonHotkey": null,
+              "Caption": "Приказ",
+              "Condition": null,
+              "ConfirmationMessage": null,
+              "Description": null,
+              "DisplaySettings": "",
+              "Group": "На согласование по отделам",
+              "Icon": null,
+              "Order::int": 0,
+              "RowID::uid": "1caa9500-0cad-408d-9411-42c1553ce1c8",
+              "SignalID::uid": "893427ba-1d2d-4369-b7fa-c28e53997846",
+              "SignalName": "Start",
+              "StartProcess": true,
+              "TileSizeID::int": 1,
+              "TileSizeName": "$Enum_TileSize_Half",
+              "Tooltip": null
+            }
+          ]
+        },
+        "BusinessProcessCardTypes": {
+          ".table::int": 1,
+          "Rows": [
+            {
+              "CardTypeCaption": "$CardTypes_TypesNames_Document",
+              "CardTypeID::uid": "6d06c5a0-9687-4f6b-9bed-d3a081d84d9a",
+              "RowID::uid": "4a7171a5-1907-4ddc-aa86-5b58edee3399"
+            }
+          ]
+        },
+        "BusinessProcessEditRoles": {
+          ".table::int": 1,
+          "Rows": [
+            {
+              "RoleID::uid": "3db19fa0-228a-497f-873a-0250bf0a4ccb",
+              "RoleName": "Admin",
+              "RowID::uid": "b8fdf341-9646-4850-bd0c-1b1372a0ef59"
+            }
+          ]
+        },
+        "BusinessProcessExtensions": {
+          ".table::int": 1,
+          "Rows": [
+            {
+              "ExtensionID::uid": "358a033c-8b13-4236-8da5-0fef1b87def4",
+              "ExtensionName": "$WorkflowEngine_TilePermission_CheckRolesForExecution",
+              "RowID::uid": "06a303c9-5144-4460-b18b-35dd7255da41"
+            },
+            {
+              "ExtensionID::uid": "9fce6311-1746-412a-9346-77394caebe91",
+              "ExtensionName": "$KrTileExtensions_CheckState",
+              "RowID::uid": "b2ddb2d7-f5eb-4737-b4ee-084fd47cf0da"
+            }
+          ]
+        },
+        "BusinessProcessInfo": {
+          "Fields": {
+            "ConditionModified::dtm": "2024-07-16T09:56:38.079884Z",
+            "ErrorMessage": null,
+            "Group": "",
+            "LockMessage": null,
+            "Multiple": true,
+            "Name": "Приказ",
+            "StartFromCard": true
+          }
+        },
+        "BusinessProcessReadRoles": {
+          ".table::int": 1,
+          "Rows": [
+            {
+              "RoleID::uid": "3db19fa0-228a-497f-873a-0250bf0a4ccb",
+              "RoleName": "Admin",
+              "RowID::uid": "646eb06e-4a8d-4b62-b1ba-dcf51b8b0d8a"
+            },
+            {
+              "RoleID::uid": "7ff52dc0-ff6a-4c9d-ba25-b562c370004d",
+              "RoleName": "Все сотрудники",
+              "RowID::uid": "de305dab-e0ed-4224-b7c5-0d16e725f720"
+            }
+          ]
+        },
+        "BusinessProcessVersions": {
+          ".table::int": 2,
+          "Rows": [
+            {
+              "Created::dtm": "2024-07-16T09:51:58.380687Z",
+              "CreatedByID::uid": "3db19fa0-228a-497f-873a-0250bf0a4ccb",
+              "CreatedByName": "Admin",
+              "IsDefault": true,
+              "Locked": null,
+              "LockedByID": null,
+              "LockedByName": null,
+              "LockedForEditing": false,
+              "Modified::dtm": "2024-07-17T08:19:21.245108Z",
+              "ModifiedByID::uid": "3db19fa0-228a-497f-873a-0250bf0a4ccb",
+              "ModifiedByName": "Admin",
+              "ParentRowID": null,
+              "ProcessData": {
+                "Annotations": [],
+                "Caption": null,
+                "Description": null,
+                "GlobalScript": null,
+                "Hash": {},
+                "ID::uid": "4dba3626-27c2-4258-b5e6-6d3796c1750e",
+                "Links": [
+                  {
+                    "Anchors": [],
+                    "Caption": null,
+                    "CaptionAnchorOffsetX::dbl": 0.0,
+                    "CaptionAnchorOffsetY::dbl": 0.0,
+                    "CaptionAnchorPosition::dbl": 0.5,
+                    "CaptionAngle::dbl": 0.0,
+                    "FromNode::uid": "17d24592-76fe-4fa9-8c19-0ba5fe632484",
+                    "FromOrientation::int": 0,
+                    "FromPosition::dbl": 0.5,
+                    "Hash": null,
+                    "ID::uid": "eee7d4c8-37d3-487c-9f26-dbd7ff20616a",
+                    "InCondition": null,
+                    "InDescription": null,
+                    "Left::dbl": 110.0,
+                    "LinkMode::int": 0,
+                    "LockProcess": false,
+                    "Name": "Connection",
+                    "OutCondition": null,
+                    "OutDescription": null,
+                    "SignalProcessingMode::int": 0,
+                    "ToNode::uid": "8b625a29-da84-4e70-9a76-5bc998a7467d",
+                    "ToOrientation::int": 1,
+                    "Top::dbl": 130.0,
+                    "ToPosition::dbl": 0.5,
+                    "UseAnchorPosition": false
+                  },
+                  {
+                    "Anchors": [],
+                    "Caption": "Кадры",
+                    "CaptionAnchorOffsetX::dbl": 0.0,
+                    "CaptionAnchorOffsetY::dbl": 0.0,
+                    "CaptionAnchorPosition::dbl": 0.5,
+                    "CaptionAngle::dbl": 0.0,
+                    "FromNode::uid": "db564a54-fdcf-416b-94f5-30fb4063212e",
+                    "FromOrientation::int": 0,
+                    "FromPosition::dbl": 0.5,
+                    "Hash": null,
+                    "ID::uid": "8d2fd826-b82b-4f14-9cc8-840cf6fdf92b",
+                    "InCondition": null,
+                    "InDescription": null,
+                    "Left::dbl": 340.0,
+                    "LinkMode::int": 0,
+                    "LockProcess": false,
+                    "Name": "Кадры",
+                    "OutCondition::trf": "LinkOutCondition.081ed992.cs",
+                    "OutDescription": "Если подразделение Кадры",
+                    "SignalProcessingMode::int": 0,
+                    "ToNode::uid": "71f0bb0c-1e33-48dc-89c4-ad6d10f8572e",
+                    "ToOrientation::int": 0,
+                    "Top::dbl": 250.0,
+                    "ToPosition::dbl": 0.5,
+                    "UseAnchorPosition": false
+                  },
+                  {
+                    "Anchors": [],
+                    "Caption": "Бухгалтерия",
+                    "CaptionAnchorOffsetX::dbl": -70.0,
+                    "CaptionAnchorOffsetY::dbl": -20.0,
+                    "CaptionAnchorPosition::dbl": 0.5,
+                    "CaptionAngle::dbl": 0.0,
+                    "FromNode::uid": "db564a54-fdcf-416b-94f5-30fb4063212e",
+                    "FromOrientation::int": 0,
+                    "FromPosition::dbl": 0.5,
+                    "Hash": null,
+                    "ID::uid": "cb77dba3-2b05-4c48-a282-725bd809d310",
+                    "InCondition": null,
+                    "InDescription": null,
+                    "Left::dbl": 400.0,
+                    "LinkMode::int": 0,
+                    "LockProcess": false,
+                    "Name": "Connection 2",
+                    "OutCondition::trf": "LinkOutCondition.6fb5a5fa.cs",
+                    "OutDescription": "Если Бухгалтерия",
+                    "SignalProcessingMode::int": 0,
+                    "ToNode::uid": "3e63c6e4-4808-4536-96dd-2b8b34ddc523",
+                    "ToOrientation::int": 1,
+                    "Top::dbl": 450.0,
+                    "ToPosition::dbl": 0.6,
+                    "UseAnchorPosition": true
+                  },
+                  {
+                    "Anchors": [],
+                    "Caption": "Отдел ИТ",
+                    "CaptionAnchorOffsetX::dbl": -30.0,
+                    "CaptionAnchorOffsetY::dbl": -20.0,
+                    "CaptionAnchorPosition::dbl": 0.5,
+                    "CaptionAngle::dbl": 0.0,
+                    "FromNode::uid": "db564a54-fdcf-416b-94f5-30fb4063212e",
+                    "FromOrientation::int": 0,
+                    "FromPosition::dbl": 0.5,
+                    "Hash": null,
+                    "ID::uid": "9e6a5c6b-ab5d-4982-a465-c4a4da2d2664",
+                    "InCondition": null,
+                    "InDescription": null,
+                    "Left::dbl": 340.0,
+                    "LinkMode::int": 0,
+                    "LockProcess": false,
+                    "Name": "Connection 3",
+                    "OutCondition::trf": "LinkOutCondition.5df950e4.cs",
+                    "OutDescription": null,
+                    "SignalProcessingMode::int": 0,
+                    "ToNode::uid": "a088653a-fd82-4205-8811-7d82ea100a52",
+                    "ToOrientation::int": 0,
+                    "Top::dbl": 510.0,
+                    "ToPosition::dbl": 0.5,
+                    "UseAnchorPosition": true
+                  },
+                  {
+                    "Anchors": [],
+                    "Caption": "На доработку",
+                    "CaptionAnchorOffsetX::dbl": -80.0,
+                    "CaptionAnchorOffsetY::dbl": -80.0,
+                    "CaptionAnchorPosition::dbl": 0.5,
+                    "CaptionAngle::dbl": 0.0,
+                    "FromNode::uid": "71f0bb0c-1e33-48dc-89c4-ad6d10f8572e",
+                    "FromOrientation::int": 2,
+                    "FromPosition::dbl": 0.7,
+                    "Hash": null,
+                    "ID::uid": "48e0e85c-a85b-4596-aca2-f3b05c65d1d6",
+                    "InCondition": null,
+                    "InDescription": null,
+                    "Left::dbl": 590.0,
+                    "LinkMode::int": 0,
+                    "LockProcess": false,
+                    "Name": "Доработка",
+                    "OutCondition": null,
+                    "OutDescription": "Доработка",
+                    "SignalProcessingMode::int": 0,
+                    "ToNode::uid": "1940e310-b256-47bf-90b6-7753075523d3",
+                    "ToOrientation::int": 1,
+                    "Top::dbl": 270.0,
+                    "ToPosition::dbl": 0.2,
+                    "UseAnchorPosition": true
+                  },
+                  {
+                    "Anchors": [],
+                    "Caption": "На доработку",
+                    "CaptionAnchorOffsetX::dbl": -90.0,
+                    "CaptionAnchorOffsetY::dbl": -20.0,
+                    "CaptionAnchorPosition::dbl": 0.5,
+                    "CaptionAngle::dbl": 0.0,
+                    "FromNode::uid": "3e63c6e4-4808-4536-96dd-2b8b34ddc523",
+                    "FromOrientation::int": 2,
+                    "FromPosition::dbl": 0.3,
+                    "Hash": null,
+                    "ID::uid": "0cc6ea4f-daa9-44f5-93b5-fa2b1200723c",
+                    "InCondition": null,
+                    "InDescription": null,
+                    "Left::dbl": 590.0,
+                    "LinkMode::int": 0,
+                    "LockProcess": false,
+                    "Name": "Доработка ",
+                    "OutCondition": null,
+                    "OutDescription": null,
+                    "SignalProcessingMode::int": 0,
+                    "ToNode::uid": "1940e310-b256-47bf-90b6-7753075523d3",
+                    "ToOrientation::int": 1,
+                    "Top::dbl": 420.0,
+                    "ToPosition::dbl": 0.5,
+                    "UseAnchorPosition": true
+                  },
+                  {
+                    "Anchors": [],
+                    "Caption": "На доработку",
+                    "CaptionAnchorOffsetX::dbl": -80.0,
+                    "CaptionAnchorOffsetY::dbl": 60.0,
+                    "CaptionAnchorPosition::dbl": 0.5,
+                    "CaptionAngle::dbl": 0.0,
+                    "FromNode::uid": "a088653a-fd82-4205-8811-7d82ea100a52",
+                    "FromOrientation::int": 2,
+                    "FromPosition::dbl": 0.3,
+                    "Hash": null,
+                    "ID::uid": "d5a8a98d-2303-4bc9-beaf-d03e5df5d501",
+                    "InCondition": null,
+                    "InDescription": null,
+                    "Left::dbl": 590.0,
+                    "LinkMode::int": 0,
+                    "LockProcess": false,
+                    "Name": "Доработка ИТ",
+                    "OutCondition": null,
+                    "OutDescription": null,
+                    "SignalProcessingMode::int": 0,
+                    "ToNode::uid": "1940e310-b256-47bf-90b6-7753075523d3",
+                    "ToOrientation::int": 1,
+                    "Top::dbl": 460.0,
+                    "ToPosition::dbl": 0.9,
+                    "UseAnchorPosition": true
+                  },
+                  {
+                    "Anchors": [],
+                    "Caption": "На подписание ",
+                    "CaptionAnchorOffsetX::dbl": -260.0,
+                    "CaptionAnchorOffsetY::dbl": -20.0,
+                    "CaptionAnchorPosition::dbl": 0.5,
+                    "CaptionAngle::dbl": 0.0,
+                    "FromNode::uid": "71f0bb0c-1e33-48dc-89c4-ad6d10f8572e",
+                    "FromOrientation::int": 2,
+                    "FromPosition::dbl": 0.3,
+                    "Hash": null,
+                    "ID::uid": "616d3433-540f-4156-bb86-8a4d61beddf9",
+                    "InCondition": null,
+                    "InDescription": null,
+                    "Left::dbl": 590.0,
+                    "LinkMode::int": 0,
+                    "LockProcess": false,
+                    "Name": "На подписание",
+                    "OutCondition": null,
+                    "OutDescription": null,
+                    "SignalProcessingMode::int": 0,
+                    "ToNode::uid": "9c161a4c-6ef9-4952-9fbd-e3f28e5dda1a",
+                    "ToOrientation::int": 0,
+                    "Top::dbl": 230.0,
+                    "ToPosition::dbl": 0.5,
+                    "UseAnchorPosition": true
+                  },
+                  {
+                    "Anchors": [
+                      {
+                        "X::dbl": 970.0,
+                        "Y::dbl": 521.0
+                      }
+                    ],
+                    "Caption": "На подписание ",
+                    "CaptionAnchorOffsetX::dbl": -190.0,
+                    "CaptionAnchorOffsetY::dbl": -20.0,
+                    "CaptionAnchorPosition::dbl": 0.4925925925925927,
+                    "CaptionAngle::dbl": 0.0,
+                    "FromNode::uid": "3e63c6e4-4808-4536-96dd-2b8b34ddc523",
+                    "FromOrientation::int": 0,
+                    "FromPosition::dbl": 0.5,
+                    "Hash": null,
+                    "ID::uid": "0c8ce95c-d165-4e11-93d4-61cb3d0f7e88",
+                    "InCondition": null,
+                    "InDescription": null,
+                    "Left::dbl": 540.0,
+                    "LinkMode::int": 0,
+                    "LockProcess": false,
+                    "Name": "На подписание ",
+                    "OutCondition": null,
+                    "OutDescription": null,
+                    "SignalProcessingMode::int": 0,
+                    "ToNode::uid": "9c161a4c-6ef9-4952-9fbd-e3f28e5dda1a",
+                    "ToOrientation::int": 1,
+                    "Top::dbl": 450.0,
+                    "ToPosition::dbl": 0.6,
+                    "UseAnchorPosition": true
+                  },
+                  {
+                    "Anchors": [],
+                    "Caption": "На подписание ",
+                    "CaptionAnchorOffsetX::dbl": -260.0,
+                    "CaptionAnchorOffsetY::dbl": -20.0,
+                    "CaptionAnchorPosition::dbl": 0.5,
+                    "CaptionAngle::dbl": 0.0,
+                    "FromNode::uid": "a088653a-fd82-4205-8811-7d82ea100a52",
+                    "FromOrientation::int": 2,
+                    "FromPosition::dbl": 0.7,
+                    "Hash": null,
+                    "ID::uid": "a8466ee7-e0ea-40e6-b11b-eb17b3690713",
+                    "InCondition": null,
+                    "InDescription": null,
+                    "Left::dbl": 590.0,
+                    "LinkMode::int": 0,
+                    "LockProcess": false,
+                    "Name": "На подписание  ",
+                    "OutCondition": null,
+                    "OutDescription": null,
+                    "SignalProcessingMode::int": 0,
+                    "ToNode::uid": "9c161a4c-6ef9-4952-9fbd-e3f28e5dda1a",
+                    "ToOrientation::int": 4,
+                    "Top::dbl": 490.0,
+                    "ToPosition::dbl": 0.2,
+                    "UseAnchorPosition": true
+                  },
+                  {
+                    "Anchors": [],
+                    "Caption": "На доработку",
+                    "CaptionAnchorOffsetX::dbl": -10.0,
+                    "CaptionAnchorOffsetY::dbl": -20.0,
+                    "CaptionAnchorPosition::dbl": 0.5,
+                    "CaptionAngle::dbl": 0.0,
+                    "FromNode::uid": "9c161a4c-6ef9-4952-9fbd-e3f28e5dda1a",
+                    "FromOrientation::int": 1,
+                    "FromPosition::dbl": 0.2,
+                    "Hash": null,
+                    "ID::uid": "826e5b99-cccf-41e3-a7c8-fd5862232839",
+                    "InCondition": null,
+                    "InDescription": null,
+                    "Left::dbl": 890.0,
+                    "LinkMode::int": 0,
+                    "LockProcess": false,
+                    "Name": "Connection 4",
+                    "OutCondition": null,
+                    "OutDescription": null,
+                    "SignalProcessingMode::int": 0,
+                    "ToNode::uid": "1940e310-b256-47bf-90b6-7753075523d3",
+                    "ToOrientation::int": 2,
+                    "Top::dbl": 410.0,
+                    "ToPosition::dbl": 0.4,
+                    "UseAnchorPosition": true
+                  },
+                  {
+                    "Anchors": [],
+                    "Caption": "Подписано",
+                    "CaptionAnchorOffsetX::dbl": -30.0,
+                    "CaptionAnchorOffsetY::dbl": -30.0,
+                    "CaptionAnchorPosition::dbl": 0.5,
+                    "CaptionAngle::dbl": 0.0,
+                    "FromNode::uid": "9c161a4c-6ef9-4952-9fbd-e3f28e5dda1a",
+                    "FromOrientation::int": 0,
+                    "FromPosition::dbl": 0.5,
+                    "Hash": null,
+                    "ID::uid": "c9081ebd-df0e-415b-bd36-ede70f542f8c",
+                    "InCondition": null,
+                    "InDescription": null,
+                    "Left::dbl": 1070.0,
+                    "LinkMode::int": 0,
+                    "LockProcess": false,
+                    "Name": "Конец",
+                    "OutCondition": null,
+                    "OutDescription": null,
+                    "SignalProcessingMode::int": 0,
+                    "ToNode::uid": "54599183-a3e7-4287-86b7-ac4b87bd1f10",
+                    "ToOrientation::int": 0,
+                    "Top::dbl": 490.0,
+                    "ToPosition::dbl": 0.5,
+                    "UseAnchorPosition": true
+                  },
+                  {
+                    "Anchors": [],
+                    "Caption": "Вернуть с доработкой",
+                    "CaptionAnchorOffsetX::dbl": -40.0,
+                    "CaptionAnchorOffsetY::dbl": -20.0,
+                    "CaptionAnchorPosition::dbl": 0.5,
+                    "CaptionAngle::dbl": 0.0,
+                    "FromNode::uid": "1940e310-b256-47bf-90b6-7753075523d3",
+                    "FromOrientation::int": 3,
+                    "FromPosition::dbl": 0.2,
+                    "Hash": null,
+                    "ID::uid": "9da727ba-49c0-40ca-b9e8-e54d1c6ac085",
+                    "InCondition": null,
+                    "InDescription": null,
+                    "Left::dbl": 430.0,
+                    "LinkMode::int": 0,
+                    "LockProcess": false,
+                    "Name": "Вернуть с доработкой",
+                    "OutCondition": null,
+                    "OutDescription": null,
+                    "SignalProcessingMode::int": 0,
+                    "ToNode::uid": "8b625a29-da84-4e70-9a76-5bc998a7467d",
+                    "ToOrientation::int": 2,
+                    "Top::dbl": 130.0,
+                    "ToPosition::dbl": 0.5,
+                    "UseAnchorPosition": true
+                  },
+                  {
+                    "Anchors": [
+                      {
+                        "X::dbl": 230.0,
+                        "Y::dbl": 200.0
+                      }
+                    ],
+                    "Caption": null,
+                    "CaptionAnchorOffsetX::dbl": 98.0,
+                    "CaptionAnchorOffsetY::dbl": -124.0,
+                    "CaptionAnchorPosition::dbl": 0.6293103448275862,
+                    "CaptionAngle::dbl": 0.0,
+                    "FromNode::uid": "8b625a29-da84-4e70-9a76-5bc998a7467d",
+                    "FromOrientation::int": 4,
+                    "FromPosition::dbl": 0.5,
+                    "Hash": null,
+                    "ID::uid": "21bf2d0f-70b2-4498-b081-7aa6e544c1a8",
+                    "InCondition": null,
+                    "InDescription": null,
+                    "Left::dbl": 240.0,
+                    "LinkMode::int": 0,
+                    "LockProcess": false,
+                    "Name": "Connection 1",
+                    "OutCondition": null,
+                    "OutDescription": null,
+                    "SignalProcessingMode::int": 0,
+                    "ToNode::uid": "db564a54-fdcf-416b-94f5-30fb4063212e",
+                    "ToOrientation::int": 1,
+                    "Top::dbl": 180.0,
+                    "ToPosition::dbl": 0.5,
+                    "UseAnchorPosition": true
+                  }
+                ],
+                "LogLevel::int": 0,
+                "Name": "Приказ",
+                "Nodes": [
+                  {
+                    "Actions": [
+                      {
+                        "ActionTypeID::uid": "a4f7fb59-cc66-4aba-b593-3f4d26698666",
+                        "Caption": "$CardTypes_TypesNames_StartProcess",
+                        "Hash": {
+                          "WeStartAction": {
+                            "IsNotPersistent": false,
+                            "StartSignal": {
+                              "ID::uid": "893427ba-1d2d-4369-b7fa-c28e53997846",
+                              "Name": "Start"
+                            }
+                          }
+                        },
+                        "ID::uid": "db0021af-48b9-4f98-9f4b-510a96fd409c",
+                        "Name": "WorkflowStartAction",
+                        "Order::int": 0,
+                        "PostScript": null,
+                        "PostScriptProcessAnySignal": false,
+                        "PreConditions": [],
+                        "PreScript": null,
+                        "PreScriptProcessAnySignal": false
+                      }
+                    ],
+                    "Caption": "$CardTypes_TypesNames_StartProcess",
+                    "DefaultSignals": [],
+                    "Description": null,
+                    "Hash": {},
+                    "Height::dbl": 100.0,
+                    "Icon": "Thin258",
+                    "ID::uid": "17d24592-76fe-4fa9-8c19-0ba5fe632484",
+                    "IsStandAlone": true,
+                    "Left::dbl": 60.0,
+                    "Name": "WorkflowStartAction",
+                    "Top::dbl": 390.0,
+                    "Width::dbl": 100.0
+                  },
+                  {
+                    "Actions": [
+                      {
+                        "ActionTypeID::uid": "eb222506-6f7d-4c22-b3d2-d98a2f390ac5",
+                        "Caption": "$CardTypes_TypesNames_Condition",
+                        "Hash": {
+                          "WeConditionAction": []
+                        },
+                        "ID::uid": "9a4b8219-a316-463c-9582-819c9474193b",
+                        "Name": "WorkflowConditionAction",
+                        "Order::int": 0,
+                        "PostScript": null,
+                        "PostScriptProcessAnySignal": false,
+                        "PreConditions": [],
+                        "PreScript": null,
+                        "PreScriptProcessAnySignal": false
+                      }
+                    ],
+                    "Caption": "$CardTypes_TypesNames_Condition",
+                    "DefaultSignals": [],
+                    "Description": null,
+                    "Hash": {},
+                    "Height::dbl": 120.0,
+                    "Icon": "Thin360",
+                    "ID::uid": "db564a54-fdcf-416b-94f5-30fb4063212e",
+                    "IsStandAlone": true,
+                    "Left::dbl": 280.0,
+                    "Name": "WorkflowConditionAction",
+                    "Top::dbl": 390.0,
+                    "Width::dbl": 120.0
+                  },
+                  {
+                    "Actions": [
+                      {
+                        "ActionTypeID::uid": "70762c81-bd23-4580-a3fb-c452604f6e78",
+                        "Caption": "$KrActions_Approval",
+                        "Hash": {
+                          "KrApprovalActionOptionLinksVirtual": [
+                            {
+                              "ActionOption": {
+                                "RowID::uid": "bf5cfb49-aaff-4535-87b1-99a331627f35"
+                              },
+                              "Link": {
+                                "Caption": "На доработку",
+                                "ID::uid": "48e0e85c-a85b-4596-aca2-f3b05c65d1d6",
+                                "Name": "Доработка"
+                              },
+                              "RowID::uid": "398ee2f2-ecb7-49fb-bc46-6244e45cbcb1"
+                            },
+                            {
+                              "ActionOption": {
+                                "RowID::uid": "360704ea-8f99-47ac-8d73-ffdbd574fb9d"
+                              },
+                              "Link": {
+                                "Caption": "На подписание ",
+                                "ID::uid": "616d3433-540f-4156-bb86-8a4d61beddf9",
+                                "Name": "На подписание"
+                              },
+                              "RowID::uid": "f4009be0-53b5-488d-bdcd-448e311b7832"
+                            }
+                          ],
+                          "KrApprovalActionOptionsActionVirtual": [
+                            {
+                              "ActionOption": {
+                                "Caption": "$KrAction_ActionCompletionOption_Approved",
+                                "ID::uid": "4339a03f-234d-4a9a-a6e4-58a88a5a03ce"
+                              },
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "Order::int": 0,
+                              "RowID::uid": "360704ea-8f99-47ac-8d73-ffdbd574fb9d"
+                            },
+                            {
+                              "ActionOption": {
+                                "Caption": "$KrAction_ActionCompletionOption_Disapproved",
+                                "ID::uid": "6fbdd34b-be9a-40bf-90cb-1640d4abb9f5"
+                              },
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "Order::int": 1,
+                              "RowID::uid": "bf5cfb49-aaff-4535-87b1-99a331627f35"
+                            }
+                          ],
+                          "KrApprovalActionOptionsVirtual": [
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Approve",
+                                "ID::uid": "8cf5cf41-8347-05b4-b3b2-519e8e621225"
+                              },
+                              "Order::int": 0,
+                              "RowID::uid": "ff91871b-6d83-4160-8240-4583830268b4",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrApprove",
+                                "ID::uid": "e4d7f6bf-fea9-4a3b-8a5a-e1a0a40de74c",
+                                "Name": "KrApprove"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Disapprove",
+                                "ID::uid": "811d41ef-5610-421e-a573-fcdfd821713e"
+                              },
+                              "Order::int": 1,
+                              "RowID::uid": "94443a07-100e-49e1-bfe4-ef05a9e0d3bb",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrApprove",
+                                "ID::uid": "e4d7f6bf-fea9-4a3b-8a5a-e1a0a40de74c",
+                                "Name": "KrApprove"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Delegate",
+                                "ID::uid": "b997a7f2-ad57-036f-8798-298c14309f46"
+                              },
+                              "Order::int": 2,
+                              "RowID::uid": "0c3899a3-7eb8-4f69-a297-6e74829dd726",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrApprove",
+                                "ID::uid": "e4d7f6bf-fea9-4a3b-8a5a-e1a0a40de74c",
+                                "Name": "KrApprove"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_RequestComments",
+                                "ID::uid": "fffb3209-2b67-09f0-bd25-ba4ec94ca5e8"
+                              },
+                              "Order::int": 3,
+                              "RowID::uid": "6c77db31-edba-489f-a3ab-f8fc968b692b",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrApprove",
+                                "ID::uid": "e4d7f6bf-fea9-4a3b-8a5a-e1a0a40de74c",
+                                "Name": "KrApprove"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_AdditionalApproval",
+                                "ID::uid": "c726d8ba-73b9-4867-87fe-387d4c61a75a"
+                              },
+                              "Order::int": 4,
+                              "RowID::uid": "db3cc7e8-0797-46a2-a838-a17078f5f5a1",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrApprove",
+                                "ID::uid": "e4d7f6bf-fea9-4a3b-8a5a-e1a0a40de74c",
+                                "Name": "KrApprove"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Approve",
+                                "ID::uid": "8cf5cf41-8347-05b4-b3b2-519e8e621225"
+                              },
+                              "Order::int": 5,
+                              "RowID::uid": "9f3830f1-945f-43d9-9fdd-e25f7a5e401b",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrAdditionalApproval",
+                                "ID::uid": "b3d8eae3-c6bf-4b59-bcc7-461d526c326c",
+                                "Name": "KrAdditionalApproval"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Disapprove",
+                                "ID::uid": "811d41ef-5610-421e-a573-fcdfd821713e"
+                              },
+                              "Order::int": 6,
+                              "RowID::uid": "59774535-afd4-4222-a27c-d0d3346003f1",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrAdditionalApproval",
+                                "ID::uid": "b3d8eae3-c6bf-4b59-bcc7-461d526c326c",
+                                "Name": "KrAdditionalApproval"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Revoke",
+                                "ID::uid": "6472fea9-f818-4ab5-9f31-9ccdaea9b412"
+                              },
+                              "Order::int": 7,
+                              "RowID::uid": "fe1bc1fb-f4a3-48a5-9670-8d2ec6acdd56",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrAdditionalApproval",
+                                "ID::uid": "b3d8eae3-c6bf-4b59-bcc7-461d526c326c",
+                                "Name": "KrAdditionalApproval"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_RequestComments",
+                                "ID::uid": "fffb3209-2b67-09f0-bd25-ba4ec94ca5e8"
+                              },
+                              "Order::int": 8,
+                              "RowID::uid": "7b8141fc-2aa3-4221-99bc-ccf2ef51accc",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrAdditionalApproval",
+                                "ID::uid": "b3d8eae3-c6bf-4b59-bcc7-461d526c326c",
+                                "Name": "KrAdditionalApproval"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_AdditionalApproval",
+                                "ID::uid": "c726d8ba-73b9-4867-87fe-387d4c61a75a"
+                              },
+                              "Order::int": 9,
+                              "RowID::uid": "3cc157ab-0c5c-4c42-b7b5-ea160445cfca",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrAdditionalApproval",
+                                "ID::uid": "b3d8eae3-c6bf-4b59-bcc7-461d526c326c",
+                                "Name": "KrAdditionalApproval"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_AddComment",
+                                "ID::uid": "78c2fd7d-d0fe-0ede-93a6-9de4f372e8e6"
+                              },
+                              "Order::int": 10,
+                              "RowID::uid": "af8f775c-04d1-4829-966c-5de11a7ed146",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrRequestComment",
+                                "ID::uid": "f0360d95-4f88-4809-b926-57b34a2f69f5",
+                                "Name": "KrRequestComment"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Cancel",
+                                "ID::uid": "2582b66f-375a-0d59-ae86-a149309c5785"
+                              },
+                              "Order::int": 11,
+                              "RowID::uid": "c336506c-d323-404c-b1a3-31ef9e97a1d5",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrRequestComment",
+                                "ID::uid": "f0360d95-4f88-4809-b926-57b34a2f69f5",
+                                "Name": "KrRequestComment"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Continue",
+                                "ID::uid": "9ba9f111-fa2f-4c8e-8236-c924280a4a07"
+                              },
+                              "Order::int": 12,
+                              "RowID::uid": "da82a7fb-006a-48e8-bbf2-5dffc42ca334",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrEditInterject",
+                                "ID::uid": "c9b93ae3-9b7b-4431-a306-aace4aea8732",
+                                "Name": "KrEditInterject"
+                              }
+                            }
+                          ],
+                          "KrApprovalActionVirtual": {
+                            "CanEditAnyFiles": false,
+                            "CanEditCard": false,
+                            "ChangeStateOnEnd": true,
+                            "ChangeStateOnStart": true,
+                            "Digest": "Согласуйте пожалуйста приказ номер {f:DocumentCommonInfo.FullNumber}",
+                            "ExcludeDeputies": false,
+                            "ExcludeSubscribers": false,
+                            "ExpectAllApprovers": false,
+                            "IsAdvisory": false,
+                            "IsDisableAutoApproval": false,
+                            "IsParallel": false,
+                            "Period::dbl": 1.0,
+                            "ReturnWhenApproved": false
+                          },
+                          "KrWeAdditionalApprovalOptionsVirtual": {
+                            "ExcludeDeputies": false,
+                            "ExcludeSubscribers": false
+                          },
+                          "KrWeEditInterjectOptionsVirtual": {
+                            "ExcludeDeputies": false,
+                            "ExcludeSubscribers": false,
+                            "Period::dbl": 1.0
+                          },
+                          "KrWeRequestCommentOptionsVirtual": {
+                            "ExcludeDeputies": false,
+                            "ExcludeSubscribers": false
+                          },
+                          "KrWeRolesVirtual": [
+                            {
+                              "Order::int": 0,
+                              "Role": {
+                                "ID::uid": "9a73845b-f850-4cd3-ab5c-e0453b785975",
+                                "Name": "Такиуллин Р."
+                              },
+                              "RowID::uid": "1e1a92ea-7754-4d0d-bc19-dbf84baa6a6b"
+                            }
+                          ],
+                          "WeTaskActionEvents": []
+                        },
+                        "ID::uid": "d5ce0447-8b79-463c-b646-1dc53204172b",
+                        "Name": "Кадры",
+                        "Order::int": 0,
+                        "PostScript": null,
+                        "PostScriptProcessAnySignal": false,
+                        "PreConditions": [],
+                        "PreScript": null,
+                        "PreScriptProcessAnySignal": false
+                      }
+                    ],
+                    "Caption": "Согласование Кадры",
+                    "DefaultSignals": [],
+                    "Description": null,
+                    "Hash": {},
+                    "Height::dbl": 100.0,
+                    "Icon": "Int968",
+                    "ID::uid": "71f0bb0c-1e33-48dc-89c4-ad6d10f8572e",
+                    "IsStandAlone": false,
+                    "Left::dbl": 490.0,
+                    "Name": "KrApprovalAction",
+                    "Top::dbl": 200.0,
+                    "Width::dbl": 100.0
+                  },
+                  {
+                    "Actions": [
+                      {
+                        "ActionTypeID::uid": "70762c81-bd23-4580-a3fb-c452604f6e78",
+                        "Caption": "$KrActions_Approval",
+                        "Hash": {
+                          "KrApprovalActionOptionLinksVirtual": [
+                            {
+                              "ActionOption": {
+                                "RowID::uid": "41ac685a-cff1-4f12-b2b7-abd91969f6fe"
+                              },
+                              "Link": {
+                                "Caption": "На доработку",
+                                "ID::uid": "d5a8a98d-2303-4bc9-beaf-d03e5df5d501",
+                                "Name": "Доработка ИТ"
+                              },
+                              "RowID::uid": "fe71d4fb-5bb4-4741-bd6e-ddb275f91cdd"
+                            },
+                            {
+                              "ActionOption": {
+                                "RowID::uid": "c015e7f8-ba09-444e-9046-f930dd8866d1"
+                              },
+                              "Link": {
+                                "Caption": "На подписание ",
+                                "ID::uid": "a8466ee7-e0ea-40e6-b11b-eb17b3690713",
+                                "Name": "На подписание  "
+                              },
+                              "RowID::uid": "6799fbdc-bde4-4866-91ab-f9fca54a84c8"
+                            }
+                          ],
+                          "KrApprovalActionOptionsActionVirtual": [
+                            {
+                              "ActionOption": {
+                                "Caption": "$KrAction_ActionCompletionOption_Approved",
+                                "ID::uid": "4339a03f-234d-4a9a-a6e4-58a88a5a03ce"
+                              },
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "Order::int": 0,
+                              "RowID::uid": "c015e7f8-ba09-444e-9046-f930dd8866d1"
+                            },
+                            {
+                              "ActionOption": {
+                                "Caption": "$KrAction_ActionCompletionOption_Disapproved",
+                                "ID::uid": "6fbdd34b-be9a-40bf-90cb-1640d4abb9f5"
+                              },
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "Order::int": 1,
+                              "RowID::uid": "41ac685a-cff1-4f12-b2b7-abd91969f6fe"
+                            }
+                          ],
+                          "KrApprovalActionOptionsVirtual": [
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Approve",
+                                "ID::uid": "8cf5cf41-8347-05b4-b3b2-519e8e621225"
+                              },
+                              "Order::int": 0,
+                              "RowID::uid": "9dce5649-3381-4d4f-8412-0492be7f2a6e",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrApprove",
+                                "ID::uid": "e4d7f6bf-fea9-4a3b-8a5a-e1a0a40de74c",
+                                "Name": "KrApprove"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Disapprove",
+                                "ID::uid": "811d41ef-5610-421e-a573-fcdfd821713e"
+                              },
+                              "Order::int": 1,
+                              "RowID::uid": "e96f2853-7571-4850-847b-9e47021a0a1a",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrApprove",
+                                "ID::uid": "e4d7f6bf-fea9-4a3b-8a5a-e1a0a40de74c",
+                                "Name": "KrApprove"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Delegate",
+                                "ID::uid": "b997a7f2-ad57-036f-8798-298c14309f46"
+                              },
+                              "Order::int": 2,
+                              "RowID::uid": "cc3cdd5d-761f-4c58-b266-7f7629c2ae02",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrApprove",
+                                "ID::uid": "e4d7f6bf-fea9-4a3b-8a5a-e1a0a40de74c",
+                                "Name": "KrApprove"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_RequestComments",
+                                "ID::uid": "fffb3209-2b67-09f0-bd25-ba4ec94ca5e8"
+                              },
+                              "Order::int": 3,
+                              "RowID::uid": "cbca203f-0b23-406a-a2a3-3af69e57d449",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrApprove",
+                                "ID::uid": "e4d7f6bf-fea9-4a3b-8a5a-e1a0a40de74c",
+                                "Name": "KrApprove"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_AdditionalApproval",
+                                "ID::uid": "c726d8ba-73b9-4867-87fe-387d4c61a75a"
+                              },
+                              "Order::int": 4,
+                              "RowID::uid": "20b8ea6e-5e35-4c76-9eef-a288764ef271",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrApprove",
+                                "ID::uid": "e4d7f6bf-fea9-4a3b-8a5a-e1a0a40de74c",
+                                "Name": "KrApprove"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Approve",
+                                "ID::uid": "8cf5cf41-8347-05b4-b3b2-519e8e621225"
+                              },
+                              "Order::int": 5,
+                              "RowID::uid": "e93e47d6-faca-4805-b195-aa034cb2630e",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrAdditionalApproval",
+                                "ID::uid": "b3d8eae3-c6bf-4b59-bcc7-461d526c326c",
+                                "Name": "KrAdditionalApproval"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Disapprove",
+                                "ID::uid": "811d41ef-5610-421e-a573-fcdfd821713e"
+                              },
+                              "Order::int": 6,
+                              "RowID::uid": "72c828c8-8e7a-407b-aff3-44c3ca156044",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrAdditionalApproval",
+                                "ID::uid": "b3d8eae3-c6bf-4b59-bcc7-461d526c326c",
+                                "Name": "KrAdditionalApproval"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Revoke",
+                                "ID::uid": "6472fea9-f818-4ab5-9f31-9ccdaea9b412"
+                              },
+                              "Order::int": 7,
+                              "RowID::uid": "fed8e1af-29d8-4fec-8fe6-57fdc79f1713",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrAdditionalApproval",
+                                "ID::uid": "b3d8eae3-c6bf-4b59-bcc7-461d526c326c",
+                                "Name": "KrAdditionalApproval"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_RequestComments",
+                                "ID::uid": "fffb3209-2b67-09f0-bd25-ba4ec94ca5e8"
+                              },
+                              "Order::int": 8,
+                              "RowID::uid": "6305abae-5c0d-4a19-8e9f-5797b5dc9c0b",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrAdditionalApproval",
+                                "ID::uid": "b3d8eae3-c6bf-4b59-bcc7-461d526c326c",
+                                "Name": "KrAdditionalApproval"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_AdditionalApproval",
+                                "ID::uid": "c726d8ba-73b9-4867-87fe-387d4c61a75a"
+                              },
+                              "Order::int": 9,
+                              "RowID::uid": "93f40acf-1e6b-48ff-97e0-de7649dbc072",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrAdditionalApproval",
+                                "ID::uid": "b3d8eae3-c6bf-4b59-bcc7-461d526c326c",
+                                "Name": "KrAdditionalApproval"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_AddComment",
+                                "ID::uid": "78c2fd7d-d0fe-0ede-93a6-9de4f372e8e6"
+                              },
+                              "Order::int": 10,
+                              "RowID::uid": "388aaee3-7702-489e-ada0-382fc5c3d55b",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrRequestComment",
+                                "ID::uid": "f0360d95-4f88-4809-b926-57b34a2f69f5",
+                                "Name": "KrRequestComment"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Cancel",
+                                "ID::uid": "2582b66f-375a-0d59-ae86-a149309c5785"
+                              },
+                              "Order::int": 11,
+                              "RowID::uid": "57a451ce-2975-4f65-addc-5d189cde025a",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrRequestComment",
+                                "ID::uid": "f0360d95-4f88-4809-b926-57b34a2f69f5",
+                                "Name": "KrRequestComment"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Continue",
+                                "ID::uid": "9ba9f111-fa2f-4c8e-8236-c924280a4a07"
+                              },
+                              "Order::int": 12,
+                              "RowID::uid": "372dddc6-70d6-4242-a0d9-17666ade5386",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrEditInterject",
+                                "ID::uid": "c9b93ae3-9b7b-4431-a306-aace4aea8732",
+                                "Name": "KrEditInterject"
+                              }
+                            }
+                          ],
+                          "KrApprovalActionVirtual": {
+                            "CanEditAnyFiles": false,
+                            "CanEditCard": false,
+                            "ChangeStateOnEnd": true,
+                            "ChangeStateOnStart": true,
+                            "Digest": "Согласуйте пожалуйста приказ номер {f:DocumentCommonInfo.FullNumber}",
+                            "ExcludeDeputies": false,
+                            "ExcludeSubscribers": false,
+                            "ExpectAllApprovers": false,
+                            "IsAdvisory": false,
+                            "IsDisableAutoApproval": false,
+                            "IsParallel": false,
+                            "Period::dbl": 1.0,
+                            "ReturnWhenApproved": false
+                          },
+                          "KrWeAdditionalApprovalOptionsVirtual": {
+                            "ExcludeDeputies": false,
+                            "ExcludeSubscribers": false
+                          },
+                          "KrWeEditInterjectOptionsVirtual": {
+                            "ExcludeDeputies": false,
+                            "ExcludeSubscribers": false,
+                            "Period::dbl": 1.0
+                          },
+                          "KrWeRequestCommentOptionsVirtual": {
+                            "ExcludeDeputies": false,
+                            "ExcludeSubscribers": false
+                          },
+                          "KrWeRolesVirtual": [
+                            {
+                              "Order::int": 0,
+                              "Role": {
+                                "ID::uid": "e879f898-8ff0-45f0-a361-26cb4a79feaf",
+                                "Name": "Сидоров А."
+                              },
+                              "RowID::uid": "58be580d-e375-4032-a44c-c9b08273d341"
+                            }
+                          ]
+                        },
+                        "ID::uid": "0bdb6769-db42-44ec-a8f4-e79238ddf3a1",
+                        "Name": "ИТ",
+                        "Order::int": 0,
+                        "PostScript": null,
+                        "PostScriptProcessAnySignal": false,
+                        "PreConditions": [],
+                        "PreScript": null,
+                        "PreScriptProcessAnySignal": false
+                      }
+                    ],
+                    "Caption": "Согласование ИТ",
+                    "DefaultSignals": [],
+                    "Description": null,
+                    "Hash": {},
+                    "Height::dbl": 100.0,
+                    "Icon": "Int968",
+                    "ID::uid": "a088653a-fd82-4205-8811-7d82ea100a52",
+                    "IsStandAlone": false,
+                    "Left::dbl": 490.0,
+                    "Name": "KrApprovalAction 1",
+                    "Top::dbl": 600.0,
+                    "Width::dbl": 100.0
+                  },
+                  {
+                    "Actions": [
+                      {
+                        "ActionTypeID::uid": "70762c81-bd23-4580-a3fb-c452604f6e78",
+                        "Caption": "$KrActions_Approval",
+                        "Hash": {
+                          "KrApprovalActionOptionLinksVirtual": [
+                            {
+                              "ActionOption": {
+                                "RowID::uid": "0793e045-7337-4452-8eeb-cf36673b85b9"
+                              },
+                              "Link": {
+                                "Caption": "На доработку",
+                                "ID::uid": "0cc6ea4f-daa9-44f5-93b5-fa2b1200723c",
+                                "Name": "Доработка "
+                              },
+                              "RowID::uid": "f7b22c56-49a2-4854-b51c-090f69965692"
+                            },
+                            {
+                              "ActionOption": {
+                                "RowID::uid": "e750ee2f-9747-487f-aaf4-715800c23944"
+                              },
+                              "Link": {
+                                "Caption": "На подписание ",
+                                "ID::uid": "0c8ce95c-d165-4e11-93d4-61cb3d0f7e88",
+                                "Name": "На подписание "
+                              },
+                              "RowID::uid": "02119ce2-a455-4a51-a4ae-bd541b507521"
+                            }
+                          ],
+                          "KrApprovalActionOptionsActionVirtual": [
+                            {
+                              "ActionOption": {
+                                "Caption": "$KrAction_ActionCompletionOption_Approved",
+                                "ID::uid": "4339a03f-234d-4a9a-a6e4-58a88a5a03ce"
+                              },
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "Order::int": 0,
+                              "RowID::uid": "e750ee2f-9747-487f-aaf4-715800c23944"
+                            },
+                            {
+                              "ActionOption": {
+                                "Caption": "$KrAction_ActionCompletionOption_Disapproved",
+                                "ID::uid": "6fbdd34b-be9a-40bf-90cb-1640d4abb9f5"
+                              },
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "Order::int": 1,
+                              "RowID::uid": "0793e045-7337-4452-8eeb-cf36673b85b9"
+                            }
+                          ],
+                          "KrApprovalActionOptionsVirtual": [
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Approve",
+                                "ID::uid": "8cf5cf41-8347-05b4-b3b2-519e8e621225"
+                              },
+                              "Order::int": 0,
+                              "RowID::uid": "1cfcdae4-fada-4be9-9374-b945e1fd04dd",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrApprove",
+                                "ID::uid": "e4d7f6bf-fea9-4a3b-8a5a-e1a0a40de74c",
+                                "Name": "KrApprove"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Disapprove",
+                                "ID::uid": "811d41ef-5610-421e-a573-fcdfd821713e"
+                              },
+                              "Order::int": 1,
+                              "RowID::uid": "22f60980-f1f1-4fa4-82aa-40ad8262332d",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrApprove",
+                                "ID::uid": "e4d7f6bf-fea9-4a3b-8a5a-e1a0a40de74c",
+                                "Name": "KrApprove"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Delegate",
+                                "ID::uid": "b997a7f2-ad57-036f-8798-298c14309f46"
+                              },
+                              "Order::int": 2,
+                              "RowID::uid": "75dc01bf-8840-49ce-85fe-fd6d760fba0b",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrApprove",
+                                "ID::uid": "e4d7f6bf-fea9-4a3b-8a5a-e1a0a40de74c",
+                                "Name": "KrApprove"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_RequestComments",
+                                "ID::uid": "fffb3209-2b67-09f0-bd25-ba4ec94ca5e8"
+                              },
+                              "Order::int": 3,
+                              "RowID::uid": "54eb262f-de0f-47f3-b168-9673d5ff0fe7",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrApprove",
+                                "ID::uid": "e4d7f6bf-fea9-4a3b-8a5a-e1a0a40de74c",
+                                "Name": "KrApprove"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_AdditionalApproval",
+                                "ID::uid": "c726d8ba-73b9-4867-87fe-387d4c61a75a"
+                              },
+                              "Order::int": 4,
+                              "RowID::uid": "c6869d29-5ec3-454b-ba34-93f746a59fe2",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrApprove",
+                                "ID::uid": "e4d7f6bf-fea9-4a3b-8a5a-e1a0a40de74c",
+                                "Name": "KrApprove"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Approve",
+                                "ID::uid": "8cf5cf41-8347-05b4-b3b2-519e8e621225"
+                              },
+                              "Order::int": 5,
+                              "RowID::uid": "06b4dfa8-b40f-47be-8282-d80eba38a719",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrAdditionalApproval",
+                                "ID::uid": "b3d8eae3-c6bf-4b59-bcc7-461d526c326c",
+                                "Name": "KrAdditionalApproval"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Disapprove",
+                                "ID::uid": "811d41ef-5610-421e-a573-fcdfd821713e"
+                              },
+                              "Order::int": 6,
+                              "RowID::uid": "85268945-647a-48b3-bba9-34606ed3e877",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrAdditionalApproval",
+                                "ID::uid": "b3d8eae3-c6bf-4b59-bcc7-461d526c326c",
+                                "Name": "KrAdditionalApproval"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Revoke",
+                                "ID::uid": "6472fea9-f818-4ab5-9f31-9ccdaea9b412"
+                              },
+                              "Order::int": 7,
+                              "RowID::uid": "0fce7751-645e-4f87-98af-c6cb8ca1759c",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrAdditionalApproval",
+                                "ID::uid": "b3d8eae3-c6bf-4b59-bcc7-461d526c326c",
+                                "Name": "KrAdditionalApproval"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_RequestComments",
+                                "ID::uid": "fffb3209-2b67-09f0-bd25-ba4ec94ca5e8"
+                              },
+                              "Order::int": 8,
+                              "RowID::uid": "3555fe8c-02c3-4ebb-817a-8c5775d8efbe",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrAdditionalApproval",
+                                "ID::uid": "b3d8eae3-c6bf-4b59-bcc7-461d526c326c",
+                                "Name": "KrAdditionalApproval"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_AdditionalApproval",
+                                "ID::uid": "c726d8ba-73b9-4867-87fe-387d4c61a75a"
+                              },
+                              "Order::int": 9,
+                              "RowID::uid": "d4da827e-0566-4d40-af7f-1c555bd26d85",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrAdditionalApproval",
+                                "ID::uid": "b3d8eae3-c6bf-4b59-bcc7-461d526c326c",
+                                "Name": "KrAdditionalApproval"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_AddComment",
+                                "ID::uid": "78c2fd7d-d0fe-0ede-93a6-9de4f372e8e6"
+                              },
+                              "Order::int": 10,
+                              "RowID::uid": "fe049a03-bcb4-4297-88c8-21279a777813",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrRequestComment",
+                                "ID::uid": "f0360d95-4f88-4809-b926-57b34a2f69f5",
+                                "Name": "KrRequestComment"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Cancel",
+                                "ID::uid": "2582b66f-375a-0d59-ae86-a149309c5785"
+                              },
+                              "Order::int": 11,
+                              "RowID::uid": "370a2329-6385-419b-becd-ee9d54fac21f",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrRequestComment",
+                                "ID::uid": "f0360d95-4f88-4809-b926-57b34a2f69f5",
+                                "Name": "KrRequestComment"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "NotificationScript": "",
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Continue",
+                                "ID::uid": "9ba9f111-fa2f-4c8e-8236-c924280a4a07"
+                              },
+                              "Order::int": 12,
+                              "RowID::uid": "6cc6a61f-6109-43b6-96b7-83d39827811c",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrEditInterject",
+                                "ID::uid": "c9b93ae3-9b7b-4431-a306-aace4aea8732",
+                                "Name": "KrEditInterject"
+                              }
+                            }
+                          ],
+                          "KrApprovalActionVirtual": {
+                            "CanEditAnyFiles": false,
+                            "CanEditCard": false,
+                            "ChangeStateOnEnd": true,
+                            "ChangeStateOnStart": true,
+                            "Digest": "Согласуйте пожалуйста приказ номер {f:DocumentCommonInfo.FullNumber}",
+                            "ExcludeDeputies": false,
+                            "ExcludeSubscribers": false,
+                            "ExpectAllApprovers": false,
+                            "IsAdvisory": false,
+                            "IsDisableAutoApproval": false,
+                            "IsParallel": false,
+                            "Period::dbl": 1.0,
+                            "ReturnWhenApproved": false
+                          },
+                          "KrWeAdditionalApprovalOptionsVirtual": {
+                            "ExcludeDeputies": false,
+                            "ExcludeSubscribers": false
+                          },
+                          "KrWeEditInterjectOptionsVirtual": {
+                            "ExcludeDeputies": false,
+                            "ExcludeSubscribers": false,
+                            "Period::dbl": 1.0
+                          },
+                          "KrWeRequestCommentOptionsVirtual": {
+                            "ExcludeDeputies": false,
+                            "ExcludeSubscribers": false
+                          },
+                          "KrWeRolesVirtual": [
+                            {
+                              "Order::int": 0,
+                              "Role": {
+                                "ID::uid": "9a73845b-f850-4cd3-ab5c-e0453b785975",
+                                "Name": "Такиуллин Р."
+                              },
+                              "RowID::uid": "579fea4d-8992-46f6-ab8b-0aba1dbe8fb7"
+                            }
+                          ]
+                        },
+                        "ID::uid": "7563aad8-8435-4304-9685-6fb38adcaec1",
+                        "Name": "Бухгалтерия",
+                        "Order::int": 0,
+                        "PostScript": null,
+                        "PostScriptProcessAnySignal": false,
+                        "PreConditions": [],
+                        "PreScript": null,
+                        "PreScriptProcessAnySignal": false
+                      }
+                    ],
+                    "Caption": "Согласование Бухгалтерия",
+                    "DefaultSignals": [],
+                    "Description": null,
+                    "Hash": {},
+                    "Height::dbl": 100.0,
+                    "Icon": "Int968",
+                    "ID::uid": "3e63c6e4-4808-4536-96dd-2b8b34ddc523",
+                    "IsStandAlone": false,
+                    "Left::dbl": 490.0,
+                    "Name": "KrApprovalAction 2",
+                    "Top::dbl": 390.0,
+                    "Width::dbl": 100.0
+                  },
+                  {
+                    "Actions": [
+                      {
+                        "ActionTypeID::uid": "86913540-9f30-4a6b-b0d5-a24a674b2ef2",
+                        "Caption": "$CardTypes_TypesNames_EndProcess",
+                        "Hash": {
+                          "WeEndAction": {
+                            "FinishProcess": true
+                          }
+                        },
+                        "ID::uid": "c49b2ee0-48de-44dc-a0ce-3c5a0e439069",
+                        "Name": "WorkflowEndAction",
+                        "Order::int": 0,
+                        "PostScript": null,
+                        "PostScriptProcessAnySignal": false,
+                        "PreConditions": [],
+                        "PreScript": null,
+                        "PreScriptProcessAnySignal": false
+                      }
+                    ],
+                    "Caption": "$CardTypes_TypesNames_EndProcess",
+                    "DefaultSignals": [],
+                    "Description": null,
+                    "Hash": null,
+                    "Height::dbl": 100.0,
+                    "Icon": "Thin254",
+                    "ID::uid": "54599183-a3e7-4287-86b7-ac4b87bd1f10",
+                    "IsStandAlone": true,
+                    "Left::dbl": 1020.0,
+                    "Name": "WorkflowEndAction",
+                    "Top::dbl": 720.0,
+                    "Width::dbl": 100.0
+                  },
+                  {
+                    "Actions": [
+                      {
+                        "ActionTypeID::uid": "01762690-a192-4e8e-9b5e-0110666fd977",
+                        "Caption": "$KrActions_Signing",
+                        "Hash": {
+                          "KrSigningActionOptionLinksVirtual": [
+                            {
+                              "ActionOption": {
+                                "RowID::uid": "18a48c40-8f10-4614-a436-6c93787fa855"
+                              },
+                              "Link": {
+                                "Caption": "Подписано",
+                                "ID::uid": "c9081ebd-df0e-415b-bd36-ede70f542f8c",
+                                "Name": "Конец"
+                              },
+                              "RowID::uid": "98cc8252-402d-4473-ae5a-bae26036721a"
+                            },
+                            {
+                              "ActionOption": {
+                                "RowID::uid": "694f758b-1046-4244-8d7c-9c130de8f2f6"
+                              },
+                              "Link": {
+                                "Caption": "На доработку",
+                                "ID::uid": "826e5b99-cccf-41e3-a7c8-fd5862232839",
+                                "Name": "Connection 4"
+                              },
+                              "RowID::uid": "c657433d-9c50-4be4-a9e7-99cc98cf21c8"
+                            }
+                          ],
+                          "KrSigningActionOptionsActionVirtual": [
+                            {
+                              "ActionOption": {
+                                "Caption": "$KrAction_ActionCompletionOption_Signed",
+                                "ID::uid": "fa94b7bf-7b99-46d6-9c65-b21a483ebc45"
+                              },
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "Order::int": 0,
+                              "RowID::uid": "18a48c40-8f10-4614-a436-6c93787fa855"
+                            },
+                            {
+                              "ActionOption": {
+                                "Caption": "$KrAction_ActionCompletionOption_Declined",
+                                "ID::uid": "4a1936c7-1f94-4897-9dae-934163e2fe1c"
+                              },
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "Order::int": 1,
+                              "RowID::uid": "694f758b-1046-4244-8d7c-9c130de8f2f6"
+                            }
+                          ],
+                          "KrSigningActionOptionsVirtual": [
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Sign",
+                                "ID::uid": "45d6f756-d30b-4c98-9d72-6adf1a15d075"
+                              },
+                              "Order::int": 0,
+                              "RowID::uid": "0ef8f0ed-6078-4ae3-907b-d17f47669fe0",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrSigning",
+                                "ID::uid": "968d68b3-a7c5-4b5d-bfa4-bb0f346880b6",
+                                "Name": "KrSigning"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Decline",
+                                "ID::uid": "4de44ffd-c2ca-4fad-835b-631222b076e1"
+                              },
+                              "Order::int": 1,
+                              "RowID::uid": "b30fd43d-93fd-466e-8172-59b48a70d97a",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrSigning",
+                                "ID::uid": "968d68b3-a7c5-4b5d-bfa4-bb0f346880b6",
+                                "Name": "KrSigning"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Delegate",
+                                "ID::uid": "b997a7f2-ad57-036f-8798-298c14309f46"
+                              },
+                              "Order::int": 2,
+                              "RowID::uid": "604eb985-1b60-40db-a519-e871a93d3181",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrSigning",
+                                "ID::uid": "968d68b3-a7c5-4b5d-bfa4-bb0f346880b6",
+                                "Name": "KrSigning"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_RequestComments",
+                                "ID::uid": "fffb3209-2b67-09f0-bd25-ba4ec94ca5e8"
+                              },
+                              "Order::int": 3,
+                              "RowID::uid": "0e7b787f-fba0-4909-92c8-6dc3e71d1142",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrSigning",
+                                "ID::uid": "968d68b3-a7c5-4b5d-bfa4-bb0f346880b6",
+                                "Name": "KrSigning"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_AdditionalApproval",
+                                "ID::uid": "c726d8ba-73b9-4867-87fe-387d4c61a75a"
+                              },
+                              "Order::int": 4,
+                              "RowID::uid": "96228330-39e4-44f3-91fe-10f6e6f77683",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrSigning",
+                                "ID::uid": "968d68b3-a7c5-4b5d-bfa4-bb0f346880b6",
+                                "Name": "KrSigning"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Approve",
+                                "ID::uid": "8cf5cf41-8347-05b4-b3b2-519e8e621225"
+                              },
+                              "Order::int": 5,
+                              "RowID::uid": "80fe5aa8-d518-4a41-914c-144575ee3ea9",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrAdditionalApproval",
+                                "ID::uid": "b3d8eae3-c6bf-4b59-bcc7-461d526c326c",
+                                "Name": "KrAdditionalApproval"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Disapprove",
+                                "ID::uid": "811d41ef-5610-421e-a573-fcdfd821713e"
+                              },
+                              "Order::int": 6,
+                              "RowID::uid": "cefb5b32-311d-4205-a458-b4d83b466f18",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrAdditionalApproval",
+                                "ID::uid": "b3d8eae3-c6bf-4b59-bcc7-461d526c326c",
+                                "Name": "KrAdditionalApproval"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Revoke",
+                                "ID::uid": "6472fea9-f818-4ab5-9f31-9ccdaea9b412"
+                              },
+                              "Order::int": 7,
+                              "RowID::uid": "56dff45e-8f13-46c8-8d3d-b9db2e29bbe6",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrAdditionalApproval",
+                                "ID::uid": "b3d8eae3-c6bf-4b59-bcc7-461d526c326c",
+                                "Name": "KrAdditionalApproval"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_RequestComments",
+                                "ID::uid": "fffb3209-2b67-09f0-bd25-ba4ec94ca5e8"
+                              },
+                              "Order::int": 8,
+                              "RowID::uid": "c765b5c9-26e0-42df-b7c3-437ddb0bd8e9",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrAdditionalApproval",
+                                "ID::uid": "b3d8eae3-c6bf-4b59-bcc7-461d526c326c",
+                                "Name": "KrAdditionalApproval"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_AdditionalApproval",
+                                "ID::uid": "c726d8ba-73b9-4867-87fe-387d4c61a75a"
+                              },
+                              "Order::int": 9,
+                              "RowID::uid": "fb60c2a7-ee6e-41ec-9fa9-bf37c432d1ba",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrAdditionalApproval",
+                                "ID::uid": "b3d8eae3-c6bf-4b59-bcc7-461d526c326c",
+                                "Name": "KrAdditionalApproval"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_AddComment",
+                                "ID::uid": "78c2fd7d-d0fe-0ede-93a6-9de4f372e8e6"
+                              },
+                              "Order::int": 10,
+                              "RowID::uid": "4ef8d098-8da3-4313-9cd0-d5c342a27c4e",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrRequestComment",
+                                "ID::uid": "f0360d95-4f88-4809-b926-57b34a2f69f5",
+                                "Name": "KrRequestComment"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Cancel",
+                                "ID::uid": "2582b66f-375a-0d59-ae86-a149309c5785"
+                              },
+                              "Order::int": 11,
+                              "RowID::uid": "ea1fef1c-9cf2-45f6-9396-a0b709bbdf78",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrRequestComment",
+                                "ID::uid": "f0360d95-4f88-4809-b926-57b34a2f69f5",
+                                "Name": "KrRequestComment"
+                              }
+                            },
+                            {
+                              "ExcludeDeputies": false,
+                              "ExcludeSubscribers": false,
+                              "Option": {
+                                "Caption": "$UI_Tasks_CompletionOptions_Continue",
+                                "ID::uid": "9ba9f111-fa2f-4c8e-8236-c924280a4a07"
+                              },
+                              "Order::int": 12,
+                              "RowID::uid": "76923d09-0306-472e-b9b2-21c7f5238808",
+                              "SendToAuthor": false,
+                              "SendToPerformer": false,
+                              "TaskType": {
+                                "Caption": "$CardTypes_TypesNames_KrEditInterject",
+                                "ID::uid": "c9b93ae3-9b7b-4431-a306-aace4aea8732",
+                                "Name": "KrEditInterject"
+                              }
+                            }
+                          ],
+                          "KrSigningActionVirtual": {
+                            "AllowAdditionalApproval": false,
+                            "CanEditAnyFiles": false,
+                            "CanEditCard": false,
+                            "ChangeStateOnEnd": true,
+                            "ChangeStateOnStart": true,
+                            "Digest": "Подпишите пожалуйста приказ номер {f:DocumentCommonInfo.FullNumber}",
+                            "ExcludeDeputies": false,
+                            "ExcludeSubscribers": false,
+                            "ExpectAllSigners": false,
+                            "IsParallel": false,
+                            "Period::dbl": 1.0,
+                            "ReturnWhenApproved": false
+                          },
+                          "KrWeAdditionalApprovalOptionsVirtual": {
+                            "ExcludeDeputies": false,
+                            "ExcludeSubscribers": false
+                          },
+                          "KrWeEditInterjectOptionsVirtual": {
+                            "ExcludeDeputies": false,
+                            "ExcludeSubscribers": false,
+                            "Period::dbl": 1.0
+                          },
+                          "KrWeRequestCommentOptionsVirtual": {
+                            "ExcludeDeputies": false,
+                            "ExcludeSubscribers": false
+                          },
+                          "KrWeRolesVirtual": [
+                            {
+                              "Role": {
+                                "ID::uid": "e879f898-8ff0-45f0-a361-26cb4a79feaf",
+                                "Name": "Сидоров А."
+                              },
+                              "RowID::uid": "a1fa7fc9-a096-4755-ad97-dfab34889cc3"
+                            }
+                          ]
+                        },
+                        "ID::uid": "3e9c42ea-f6f6-4726-a019-899869740f82",
+                        "Name": "KrSigningAction",
+                        "Order::int": 0,
+                        "PostScript": null,
+                        "PostScriptProcessAnySignal": false,
+                        "PreConditions": [],
+                        "PreScript": null,
+                        "PreScriptProcessAnySignal": false
+                      }
+                    ],
+                    "Caption": "$KrActions_Signing",
+                    "DefaultSignals": [],
+                    "Description": null,
+                    "Hash": null,
+                    "Height::dbl": 100.0,
+                    "Icon": "Int1042",
+                    "ID::uid": "9c161a4c-6ef9-4952-9fbd-e3f28e5dda1a",
+                    "IsStandAlone": false,
+                    "Left::dbl": 1020.0,
+                    "Name": "KrSigningAction",
+                    "Top::dbl": 390.0,
+                    "Width::dbl": 100.0
+                  },
+                  {
+                    "Actions": [
+                      {
+                        "ActionTypeID::uid": "9c530e93-ec3a-48ba-b09c-ee9eceb2173e",
+                        "Caption": "$KrActions_Amending",
+                        "Hash": {
+                          "KrAmendingActionVirtual": {
+                            "CompleteOptionExcludeDeputies": false,
+                            "CompleteOptionExcludeSubscribers": false,
+                            "CompleteOptionSendToAuthor": false,
+                            "CompleteOptionSendToPerformer": false,
+                            "ExcludeDeputies": false,
+                            "ExcludeSubscribers": false,
+                            "IsChangeState": true,
+                            "IsIncrementCycle": true,
+                            "Period::dbl": 3.0,
+                            "Role": {
+                              "ID::uid": "b0918beb-94ad-4ec9-a728-749e14f14b28",
+                              "Name": "Создатель карточки"
+                            }
+                          }
+                        },
+                        "ID::uid": "1a05c1af-c8ef-414e-881b-ccf02078f4a6",
+                        "Name": "KrAmendingAction",
+                        "Order::int": 0,
+                        "PostScript": null,
+                        "PostScriptProcessAnySignal": false,
+                        "PreConditions": [],
+                        "PreScript": null,
+                        "PreScriptProcessAnySignal": false
+                      }
+                    ],
+                    "Caption": "$KrActions_Amending",
+                    "DefaultSignals": [],
+                    "Description": null,
+                    "Hash": {},
+                    "Height::dbl": 100.0,
+                    "Icon": "Thin3",
+                    "ID::uid": "1940e310-b256-47bf-90b6-7753075523d3",
+                    "IsStandAlone": false,
+                    "Left::dbl": 790.0,
+                    "Name": "KrAmendingAction",
+                    "Top::dbl": 370.0,
+                    "Width::dbl": 100.0
+                  },
+                  {
+                    "Actions": [
+                      {
+                        "ActionTypeID::uid": "4e397642-1672-4598-8851-7ed18378c915",
+                        "Caption": "$CardTypes_TypesNames_HistoryManagementAction",
+                        "Hash": {
+                          "WeHistoryManagementAction": {
+                            "NewIteration": true,
+                            "ParentTaskHistoryGroupType": {
+                              "Caption": "$ApprovalHistory_Approval",
+                              "ID::uid": "3344515f-b7af-4e89-8684-eb94dbc9b1e6"
+                            },
+                            "TaskHistoryGroupType": {
+                              "Caption": "$ApprovalHistory_ApprovalCycle",
+                              "ID::uid": "3b61470e-aaf8-4cc6-ba37-4b243fb295ab"
+                            }
+                          }
+                        },
+                        "ID::uid": "d51038ff-7453-4f8f-b299-e51addbc1e8e",
+                        "Name": "WorkflowHistoryManagementAction",
+                        "Order::int": 0,
+                        "PostScript": null,
+                        "PostScriptProcessAnySignal": false,
+                        "PreConditions": [],
+                        "PreScript": null,
+                        "PreScriptProcessAnySignal": false
+                      }
+                    ],
+                    "Caption": "$CardTypes_TypesNames_HistoryManagementAction",
+                    "DefaultSignals": [],
+                    "Description": null,
+                    "Hash": null,
+                    "Height::dbl": 100.0,
+                    "Icon": "Thin93",
+                    "ID::uid": "8b625a29-da84-4e70-9a76-5bc998a7467d",
+                    "IsStandAlone": false,
+                    "Left::dbl": 330.0,
+                    "Name": "WorkflowHistoryManagementAction",
+                    "Top::dbl": 80.0,
+                    "Width::dbl": 100.0
+                  }
+                ],
+                "ParentTypeID": null,
+                "ParentTypeName": null,
+                "Subscriptions": [
+                  {
+                    "EventName": "Start",
+                    "Hash": null,
+                    "ID::uid": "b6401cdf-62f9-46bd-a15f-572b82a43267",
+                    "NodeID::uid": "17d24592-76fe-4fa9-8c19-0ba5fe632484",
+                    "ProcessID": null
+                  }
+                ],
+                "TemplateCardID::uid": "244a2805-d6a5-457c-aaec-6f01b3276f68"
+              },
+              "RowID::uid": "4dba3626-27c2-4258-b5e6-6d3796c1750e",
+              "ScriptFileID": null,
+              "Version::int": 1
+            }
+          ]
+        },
+        "BusinessProcessVersionsVirtual": {
+          ".table::int": 1,
+          "Rows": [
+            {
+              "ActiveCount::int": 1,
+              "Created::dtm": "2024-07-16T09:51:58.380687Z",
+              "CreatedByID::uid": "3db19fa0-228a-497f-873a-0250bf0a4ccb",
+              "CreatedByName": "Admin",
+              "IsDefault": true,
+              "Locked": null,
+              "LockedByID": null,
+              "LockedByName": null,
+              "LockedForEditing": false,
+              "Modified::dtm": "2024-07-17T08:19:21.245108Z",
+              "ModifiedByID::uid": "3db19fa0-228a-497f-873a-0250bf0a4ccb",
+              "ModifiedByName": "Admin",
+              "ParentVersion": null,
+              "RowID::uid": "4dba3626-27c2-4258-b5e6-6d3796c1750e",
+              "Version::int": 1
+            }
+          ]
+        },
+        "Extension_KrCheckStateTileExtension": {
+          ".table::int": 1,
+          "Rows": [
+            {
+              "ButtonRowID::uid": "1caa9500-0cad-408d-9411-42c1553ce1c8",
+              "RowID::uid": "31768d79-e2cc-427e-8505-b785f20d63b5",
+              "StateID::int": 3,
+              "StateName": "$KrStates_Doc_Disapproved"
+            },
+            {
+              "ButtonRowID::uid": "1caa9500-0cad-408d-9411-42c1553ce1c8",
+              "RowID::uid": "7a63c8f2-c4d6-4bde-af46-cb10022b8793",
+              "StateID::int": 6,
+              "StateName": "$KrStates_Doc_Registered"
+            },
+            {
+              "ButtonRowID::uid": "1caa9500-0cad-408d-9411-42c1553ce1c8",
+              "RowID::uid": "50322a6a-a6ca-4be4-99d1-e9527629eb8c",
+              "StateID::int": 4,
+              "StateName": "$KrStates_Doc_Editing"
+            },
+            {
+              "ButtonRowID::uid": "1caa9500-0cad-408d-9411-42c1553ce1c8",
+              "RowID::uid": "f1f3e988-a21f-47e2-8dfc-dc287399a4aa",
+              "StateID::int": 10,
+              "StateName": "$KrStates_Doc_Signing"
+            },
+            {
+              "ButtonRowID::uid": "1caa9500-0cad-408d-9411-42c1553ce1c8",
+              "RowID::uid": "0771c6cc-8f5e-40dc-96d3-0fbc8810d7be",
+              "StateID::int": 12,
+              "StateName": "На рассмотрении"
+            },
+            {
+              "ButtonRowID::uid": "1caa9500-0cad-408d-9411-42c1553ce1c8",
+              "RowID::uid": "d56f8bdb-b595-45e6-b69e-cfccf967efb6",
+              "StateID::int": 7,
+              "StateName": "$KrStates_Doc_Registration"
+            },
+            {
+              "ButtonRowID::uid": "1caa9500-0cad-408d-9411-42c1553ce1c8",
+              "RowID::uid": "8e964e15-48c7-4943-bb5e-f13d2b20208e",
+              "StateID::int": 1,
+              "StateName": "$KrStates_Doc_Active"
+            },
+            {
+              "ButtonRowID::uid": "1caa9500-0cad-408d-9411-42c1553ce1c8",
+              "RowID::uid": "c9116527-d2c8-4ad0-b1fc-bf590cd50412",
+              "StateID::int": 9,
+              "StateName": "$KrStates_Doc_Declined"
+            },
+            {
+              "ButtonRowID::uid": "1caa9500-0cad-408d-9411-42c1553ce1c8",
+              "RowID::uid": "acf53dbe-dee3-405d-910d-bf95a143bbad",
+              "StateID::int": 11,
+              "StateName": "Отклонено"
+            },
+            {
+              "ButtonRowID::uid": "1caa9500-0cad-408d-9411-42c1553ce1c8",
+              "RowID::uid": "c195c3d1-41f2-4eb3-92d0-fe1d81a0e09a",
+              "StateID::int": 5,
+              "StateName": "$KrStates_Doc_Canceled"
+            },
+            {
+              "ButtonRowID::uid": "1caa9500-0cad-408d-9411-42c1553ce1c8",
+              "RowID::uid": "3df1cc4b-0717-4170-8eed-1f76ae779baf",
+              "StateID::int": 8,
+              "StateName": "$KrStates_Doc_Signed"
+            },
+            {
+              "ButtonRowID::uid": "1caa9500-0cad-408d-9411-42c1553ce1c8",
+              "RowID::uid": "17eb2246-311a-4db4-a7cb-f0e1284ce84a",
+              "StateID::int": 0,
+              "StateName": "$KrStates_Doc_Draft"
+            },
+            {
+              "ButtonRowID::uid": "1caa9500-0cad-408d-9411-42c1553ce1c8",
+              "RowID::uid": "02564dde-8dc9-41db-82e2-829f8b210ae7",
+              "StateID::int": 2,
+              "StateName": "$KrStates_Doc_Approved"
+            }
+          ]
+        },
+        "Extension_WorkflowEngineCheckContextRole": {
+          ".table::int": 1,
+          "Rows": [
+            {
+              "ButtonRowID::uid": "1caa9500-0cad-408d-9411-42c1553ce1c8",
+              "RoleID::uid": "b0918beb-94ad-4ec9-a728-749e14f14b28",
+              "RoleName": "Создатель карточки",
+              "RowID::uid": "5d85e8d9-d407-4d10-9f2d-8ac7c80287d3"
+            }
+          ]
+        }
+      },
+      "TaskHistory": null,
+      "TaskHistoryGroups": null,
+      "Tasks": null,
+      "Topics": null,
+      "TypeCaption": "$CardTypes_TypesNames_BusinessProcessTemplate",
+      "TypeID::uid": "d05799bd-35b6-43b4-97dd-b6d0e683eff2",
+      "TypeName": "BusinessProcessTemplate",
+      "Version::int": 0
+    },
+    "FileMapping": null,
+    "Info": {
+      ".importVersion::int": 53
+    }
+  }
+]

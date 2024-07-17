@@ -1,0 +1,1 @@
+﻿(await GetCardAsync()).DocumentCommonInfo.DepartmentName == "Кадры";

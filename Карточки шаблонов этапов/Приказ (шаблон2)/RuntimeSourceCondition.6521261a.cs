@@ -1,0 +1,1 @@
+﻿ProcessInfo.Rejectedyes == true
