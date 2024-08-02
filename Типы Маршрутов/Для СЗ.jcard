@@ -1,0 +1,108 @@
+﻿[
+  {
+    ".method::int": 2,
+    "Card": {
+      "Created::dtm": "2024-08-01T09:14:30.935906Z",
+      "CreatedByID::uid": "3db19fa0-228a-497f-873a-0250bf0a4ccb",
+      "CreatedByName": "Admin",
+      "Files": null,
+      "Flags::int": 0,
+      "ID::uid": "90345595-7336-4c8c-9b5e-2698333541b6",
+      "Info": null,
+      "Modified::dtm": "2024-08-01T09:14:30.935906Z",
+      "ModifiedByID::uid": "3db19fa0-228a-497f-873a-0250bf0a4ccb",
+      "ModifiedByName": "Admin",
+      "Permissions": null,
+      "Sections": {
+        "KrActiveTasksVirtual": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "KrAdditionalApprovalInfoUsersCardVirtual_Synthetic": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "KrAdditionalApprovalUsersCardVirtual_Synthetic": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "KrApprovalCommonInfoVirtual": {
+          "Fields": {
+            "ApprovedBy": null,
+            "AuthorComment": null,
+            "AuthorID": null,
+            "AuthorName": null,
+            "CurrentApprovalStageRowID": null,
+            "DisapprovedBy": null,
+            "MainCardID": null,
+            "ProcessOwnerID": null,
+            "ProcessOwnerName": null,
+            "StateChangedDateTimeUTC": null,
+            "StateID::int": 0,
+            "StateName": "$KrStates_Doc_Draft"
+          }
+        },
+        "KrApprovalHistoryVirtual": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "KrDialogButtonSettingsVirtual_Synthetic": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "KrForkNestedProcessesSettingsVirtual_Synthetic": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "KrForkSecondaryProcessesSettingsVirtual_Synthetic": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "KrNotificationOptionalRecipientsVirtual_Synthetic": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "KrPerformersVirtual_Synthetic": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "KrStagesVirtual": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "KrUniversalTaskOptionsSettingsVirtual_Synthetic": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "SiDoctypesroute": {
+          ".table::int": 1,
+          "Rows": [
+            {
+              "DocumentTypesCaption": "$KrTypes_DocTypes_ServiceRecord",
+              "DocumentTypesID::uid": "18d01f19-9c21-49ee-a27f-04ffd6ec27eb",
+              "RowID::uid": "805d0d3c-49a3-4bb4-bedf-0b30277b9ee9"
+            }
+          ]
+        },
+        "SiInfo": {
+          "Fields": {
+            "Hidden": false,
+            "Name": "Для СЗ"
+          }
+        }
+      },
+      "TaskHistory": null,
+      "TaskHistoryGroups": null,
+      "Tasks": null,
+      "Topics": null,
+      "TypeCaption": "Типы Маршрутов",
+      "TypeID::uid": "113dfe4d-bde8-466e-a9eb-24d7ee5aca8a",
+      "TypeName": "SiRoutetypes",
+      "Version::int": 0
+    },
+    "FileMapping": null,
+    "Info": {
+      ".importVersion::int": 1
+    }
+  }
+]

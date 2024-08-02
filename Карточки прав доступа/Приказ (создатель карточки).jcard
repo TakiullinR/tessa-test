@@ -2,18 +2,22 @@
   {
     ".method::int": 2,
     "Card": {
-      "Created::dtm": "2024-07-14T08:49:05.815638Z",
+      "Created::dtm": "2024-08-01T10:49:15.796003Z",
       "CreatedByID::uid": "3db19fa0-228a-497f-873a-0250bf0a4ccb",
       "CreatedByName": "Admin",
       "Files": null,
       "Flags::int": 0,
-      "ID::uid": "6ad1a103-0d17-4265-a734-ac5ae6d3ed60",
+      "ID::uid": "f51c76c2-cb81-42b5-a56b-b778db340c00",
       "Info": null,
-      "Modified::dtm": "2024-07-17T07:17:50.298744Z",
+      "Modified::dtm": "2024-08-01T14:48:32.549445Z",
       "ModifiedByID::uid": "3db19fa0-228a-497f-873a-0250bf0a4ccb",
       "ModifiedByName": "Admin",
       "Permissions": null,
       "Sections": {
+        "Condition_FieldChangedCondition": {
+          ".table::int": 1,
+          "Rows": null
+        },
         "Condition_KrDepartmentCondition": {
           ".table::int": 1,
           "Rows": null
@@ -34,11 +38,39 @@
           ".table::int": 1,
           "Rows": null
         },
+        "Condition_KrTaskTypeConditionTaskRoles": {
+          ".table::int": 1,
+          "Rows": null
+        },
         "Condition_KrUsersCondition": {
           ".table::int": 1,
           "Rows": null
         },
+        "Condition_TagCondition": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "Condition_TaskConditionCompletionOptions": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "Condition_TaskConditionFunctionRoles": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "Condition_TaskConditionTaskKinds": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "Condition_TaskConditionTaskTypes": {
+          ".table::int": 1,
+          "Rows": null
+        },
         "ConditionsVirtual": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "KrPermissionAclGenerationRules": {
           ".table::int": 1,
           "Rows": null
         },
@@ -66,11 +98,11 @@
           ".table::int": 1,
           "Rows": null
         },
-        "KrPermissionExtendedMandatoryRules": {
+        "KrPermissionExtendedMandatoryRuleTypes": {
           ".table::int": 1,
           "Rows": null
         },
-        "KrPermissionExtendedMandatoryRuleTypes": {
+        "KrPermissionExtendedMandatoryRules": {
           ".table::int": 1,
           "Rows": null
         },
@@ -78,11 +110,11 @@
           ".table::int": 1,
           "Rows": null
         },
-        "KrPermissionExtendedTaskRules": {
+        "KrPermissionExtendedTaskRuleTypes": {
           ".table::int": 1,
           "Rows": null
         },
-        "KrPermissionExtendedTaskRuleTypes": {
+        "KrPermissionExtendedTaskRules": {
           ".table::int": 1,
           "Rows": null
         },
@@ -97,14 +129,91 @@
               "IsContext": true,
               "RoleID::uid": "b0918beb-94ad-4ec9-a728-749e14f14b28",
               "RoleName": "Создатель карточки",
-              "RowID::uid": "d7353f8b-bc8f-45e1-b4bc-8c33d149b99d"
+              "RowID::uid": "6be2dbf9-e6df-4c62-8a8b-d74133574b7f"
+            }
+          ]
+        },
+        "KrPermissionStates": {
+          ".table::int": 1,
+          "Rows": [
+            {
+              "RowID::uid": "f9884dd7-b297-4b06-80b9-c73ea7baa30f",
+              "StateID::int": 0,
+              "StateName": "$KrStates_Doc_Draft"
+            },
+            {
+              "RowID::uid": "989cdfb5-b49f-40b6-8886-23416081bbc1",
+              "StateID::int": 4,
+              "StateName": "$KrStates_Doc_Editing"
+            },
+            {
+              "RowID::uid": "c0e4aa03-433b-4771-aceb-1cdc4cb1a026",
+              "StateID::int": 10,
+              "StateName": "$KrStates_Doc_Signing"
+            },
+            {
+              "RowID::uid": "4bde14bd-7eea-448b-8673-3923f20e761b",
+              "StateID::int": 7,
+              "StateName": "$KrStates_Doc_Registration"
+            },
+            {
+              "RowID::uid": "29f4d0ed-697e-4eb3-a7a1-054a90ec5575",
+              "StateID::int": 1,
+              "StateName": "$KrStates_Doc_Active"
+            },
+            {
+              "RowID::uid": "2472d7b8-8864-4fc3-b257-f2be9c7973b1",
+              "StateID::int": 3,
+              "StateName": "$KrStates_Doc_Disapproved"
+            },
+            {
+              "RowID::uid": "1b66c8f5-e3e9-4928-b2c6-0752870db8d3",
+              "StateID::int": 9,
+              "StateName": "$KrStates_Doc_Declined"
+            },
+            {
+              "RowID::uid": "c64e4305-537d-469f-8c25-9e20a55626a4",
+              "StateID::int": 5,
+              "StateName": "$KrStates_Doc_Canceled"
+            },
+            {
+              "RowID::uid": "e9dad390-1d86-48c3-9a42-6dbb783e6e69",
+              "StateID::int": 8,
+              "StateName": "$KrStates_Doc_Signed"
+            },
+            {
+              "RowID::uid": "0ac809bd-0683-4fa3-8be2-db448829f21e",
+              "StateID::int": 2,
+              "StateName": "$KrStates_Doc_Approved"
+            },
+            {
+              "RowID::uid": "03824cc0-54e7-497c-ae00-323737288c97",
+              "StateID::int": 11,
+              "StateName": "На рассмотрении"
+            },
+            {
+              "RowID::uid": "f8dfb314-46cc-4e82-a58d-2aa7d0318b5b",
+              "StateID::int": 12,
+              "StateName": "Отклонено"
+            }
+          ]
+        },
+        "KrPermissionTypes": {
+          ".table::int": 1,
+          "Rows": [
+            {
+              "RowID::uid": "8699d97d-83b6-4a98-835c-c2b365f4062f",
+              "TypeCaption": "$KrTypes_DocTypes_Order",
+              "TypeID::uid": "77fd0adc-24d9-426f-9397-c1ee0d175b93",
+              "TypeIsDocType": true
             }
           ]
         },
         "KrPermissions": {
           "Fields": {
+            "AclGenerationRules": "",
             "CanAddFiles": true,
-            "CanAddTopics": false,
+            "CanAddTopics": true,
             "CanCreateCard": false,
             "CanCreateResolutions": true,
             "CanCreateTemplateAndCopy": false,
@@ -115,17 +224,19 @@
             "CanEditCard": true,
             "CanEditFiles": true,
             "CanEditMyMessages": true,
-            "CanEditNumber": false,
+            "CanEditNumber": true,
             "CanEditOwnFiles": true,
             "CanEditRoute": true,
-            "CanFullRecalcRoute": false,
-            "CanReadAllTopics": false,
+            "CanFullRecalcRoute": true,
+            "CanModifyAllTaskAssignedRoles": true,
+            "CanModifyOwnTaskAssignedRoles": true,
+            "CanReadAllTopics": true,
             "CanReadAndSendMessageInAllTopics": false,
             "CanReadCard": true,
             "CanSignFiles": false,
             "CanSkipStages": false,
             "CanSubscribeForNotifications": false,
-            "CanSuperModeratorMode": false,
+            "CanSuperModeratorMode": true,
             "Caption": "Приказ (создатель карточки)",
             "Conditions": [],
             "Description": null,
@@ -138,82 +249,6 @@
             "States": null,
             "Types": null
           }
-        },
-        "KrPermissionStates": {
-          ".table::int": 1,
-          "Rows": [
-            {
-              "RowID::uid": "87e78652-d7cd-4b01-9df9-de34322b17bb",
-              "StateID::int": 3,
-              "StateName": "$KrStates_Doc_Disapproved"
-            },
-            {
-              "RowID::uid": "d751847c-1f6d-4473-af44-582a67de74b1",
-              "StateID::int": 2,
-              "StateName": "$KrStates_Doc_Approved"
-            },
-            {
-              "RowID::uid": "0bb41b0a-070a-4e7e-a026-ce3b763cf7ec",
-              "StateID::int": 8,
-              "StateName": "$KrStates_Doc_Signed"
-            },
-            {
-              "RowID::uid": "137b171d-df01-4c55-8063-33be5d84b8fc",
-              "StateID::int": 5,
-              "StateName": "$KrStates_Doc_Canceled"
-            },
-            {
-              "RowID::uid": "99b9e620-3a9a-4a20-90e8-d46f366e18d3",
-              "StateID::int": 9,
-              "StateName": "$KrStates_Doc_Declined"
-            },
-            {
-              "RowID::uid": "45419c6a-bebf-467a-963a-da119711683d",
-              "StateID::int": 1,
-              "StateName": "$KrStates_Doc_Active"
-            },
-            {
-              "RowID::uid": "5d2b7f0d-6c1c-477b-a249-2fa4c0af3d2d",
-              "StateID::int": 7,
-              "StateName": "$KrStates_Doc_Registration"
-            },
-            {
-              "RowID::uid": "7564312a-1f74-4cca-96c2-3665fad21152",
-              "StateID::int": 10,
-              "StateName": "$KrStates_Doc_Signing"
-            },
-            {
-              "RowID::uid": "12372cb0-df0d-4fa7-b9e9-b3785e3eaacc",
-              "StateID::int": 4,
-              "StateName": "$KrStates_Doc_Editing"
-            },
-            {
-              "RowID::uid": "0ded24c3-5c96-4864-9fd4-1179bd48ba5c",
-              "StateID::int": 0,
-              "StateName": "$KrStates_Doc_Draft"
-            },
-            {
-              "RowID::uid": "ded9a86f-7bdf-461d-8063-fcaffa49fb67",
-              "StateID::int": 11,
-              "StateName": "Отклонено"
-            },
-            {
-              "RowID::uid": "1197ae14-f0ba-419f-9a2b-a4c30eefc690",
-              "StateID::int": 12,
-              "StateName": "На рассмотрении"
-            }
-          ]
-        },
-        "KrPermissionTypes": {
-          ".table::int": 1,
-          "Rows": [
-            {
-              "RowID::uid": "fa2564f7-9cb9-4b8b-83f5-bfb0473ea2e8",
-              "TypeCaption": "$KrTypes_DocTypes_Order",
-              "TypeID::uid": "77fd0adc-24d9-426f-9397-c1ee0d175b93",
-              "TypeIsDocType": true
-            }
-          ]
         }
       },
       "TaskHistory": null,
@@ -227,7 +262,7 @@
     },
     "FileMapping": null,
     "Info": {
-      ".importVersion::int": 22
+      ".importVersion::int": 14
     }
   }
 ]

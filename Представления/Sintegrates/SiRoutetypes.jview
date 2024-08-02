@@ -1,0 +1,262 @@
+﻿{
+  "Alias": "SiRoutetypes",
+  "Caption": "Типы Маршрутов",
+  "Description": "",
+  "GroupName": "Sintegrates",
+  "ID::uid": "83d25983-054e-4dce-aa6c-74c8536f2879",
+  "JsonMetadataSource::txt": "SiRoutetypes JSONMETA",
+  "MsQuerySource::txt": "SiRoutetypes MSSQL",
+  "PgQuerySource::txt": "SiRoutetypes PGSQL",
+  "Roles": [
+    {
+      "DeltaKind": "Added",
+      "ObjectId::uid": "83d25983-054e-4dce-aa6c-74c8536f2879",
+      "RoleId::uid": "7ff52dc0-ff6a-4c9d-ba25-b562c370004d",
+      "RoleName": "Все сотрудники"
+    }
+  ]
+}
+
+[TEXTPART SiRoutetypes JSONMETA]
+{
+  "Alias": "SiRoutetypes",
+  "Appearance": null,
+  "Appearances": null,
+  "AutoSelectFirstRow": true,
+  "AutoWidthRowLimit": null,
+  "Caption": "Типы Маршрутов",
+  "CollapseGroups": false,
+  "Columns": [
+    {
+      "Alias": "SiID",
+      "Appearance": null,
+      "CalendarIDColumn": null,
+      "CalendarOverdueFormat": null,
+      "CalendarQuantsColumn": null,
+      "Caption": "ИД",
+      "Condition": null,
+      "DisableGrouping": false,
+      "HasTag": false,
+      "Hidden": true,
+      "Localizable": false,
+      "MaxLength": null,
+      "PlannedColumn": null,
+      "SortBy": "r.ID",
+      "SortByFormat": null,
+      "TreatValueAsUtc": false,
+      "Type": "$SiDoctypesroute.ID"
+    },
+    {
+      "Alias": "SiName",
+      "Appearance": null,
+      "CalendarIDColumn": null,
+      "CalendarOverdueFormat": null,
+      "CalendarQuantsColumn": null,
+      "Caption": "Название",
+      "Condition": "",
+      "DisableGrouping": false,
+      "HasTag": false,
+      "Hidden": false,
+      "Localizable": false,
+      "MaxLength": null,
+      "PlannedColumn": null,
+      "SortBy": "r.Name",
+      "SortByFormat": null,
+      "TreatValueAsUtc": false,
+      "Type": "$SiInfo.Name"
+    },
+    {
+      "Alias": "SiDocumentTypesCaption",
+      "Appearance": null,
+      "CalendarIDColumn": null,
+      "CalendarOverdueFormat": null,
+      "CalendarQuantsColumn": null,
+      "Caption": "Типы документов",
+      "Condition": null,
+      "DisableGrouping": false,
+      "HasTag": false,
+      "Hidden": false,
+      "Localizable": true,
+      "MaxLength": null,
+      "PlannedColumn": null,
+      "SortBy": "t.DocumentTypesCaption",
+      "SortByFormat": null,
+      "TreatValueAsUtc": false,
+      "Type": "$SiDoctypesroute.DocumentTypesCaption"
+    }
+  ],
+  "ConnectionAlias": null,
+  "DefaultSortColumns": [
+    {
+      "Alias": "SiName",
+      "SortDirection": "Ascending"
+    }
+  ],
+  "EnableAutoWidth": true,
+  "ExportDataPageLimit": null,
+  "Extensions": null,
+  "FormatVersion::int": 3,
+  "GroupingColumn": null,
+  "MultiSelect": false,
+  "Overrides": null,
+  "PageLimit": null,
+  "Paging": "Always",
+  "Parameters": [
+    {
+      "Alias": "SiID",
+      "AllowedOperands": null,
+      "AutoCompleteInfo": null,
+      "AutoCompleteMapping": null,
+      "Caption": "ИД",
+      "Condition": null,
+      "DateTimeType": null,
+      "DisallowedOperands": null,
+      "DropDownInfo": null,
+      "EmptyStringIsNotNull": false,
+      "Hidden": true,
+      "HideAutoCompleteButton": false,
+      "IgnoreCase": false,
+      "Multiple": false,
+      "RefSection": null,
+      "TreatValueAsUtc": false,
+      "Type": "$SiDoctypesroute.ID"
+    },
+    {
+      "Alias": "SiName",
+      "AllowedOperands": null,
+      "AutoCompleteInfo": null,
+      "AutoCompleteMapping": null,
+      "Caption": "Название",
+      "Condition": null,
+      "DateTimeType": null,
+      "DisallowedOperands": null,
+      "DropDownInfo": null,
+      "EmptyStringIsNotNull": false,
+      "Hidden": false,
+      "HideAutoCompleteButton": false,
+      "IgnoreCase": true,
+      "Multiple": false,
+      "RefSection": null,
+      "TreatValueAsUtc": false,
+      "Type": "$SiInfo.Name"
+    },
+    {
+      "Alias": "SiDocumentTypesCaption",
+      "AllowedOperands": null,
+      "AutoCompleteInfo": null,
+      "AutoCompleteMapping": null,
+      "Caption": "Типы документов",
+      "Condition": null,
+      "DateTimeType": null,
+      "DisallowedOperands": null,
+      "DropDownInfo": null,
+      "EmptyStringIsNotNull": false,
+      "Hidden": false,
+      "HideAutoCompleteButton": false,
+      "IgnoreCase": true,
+      "Multiple": true,
+      "RefSection": null,
+      "TreatValueAsUtc": false,
+      "Type": "$SiDoctypesroute.DocumentTypesCaption"
+    },
+    {
+      "Alias": "ShowHidden",
+      "AllowedOperands": [
+        {
+          "::single_type": "str"
+        },
+        "IsTrue",
+        "IsFalse"
+      ],
+      "AutoCompleteInfo": null,
+      "AutoCompleteMapping": null,
+      "Caption": "Скрывать",
+      "Condition": null,
+      "DateTimeType": null,
+      "DisallowedOperands": null,
+      "DropDownInfo": null,
+      "EmptyStringIsNotNull": false,
+      "Hidden": false,
+      "HideAutoCompleteButton": false,
+      "IgnoreCase": false,
+      "Multiple": false,
+      "RefSection": null,
+      "TreatValueAsUtc": false,
+      "Type": "$SiInfo.Hidden"
+    }
+  ],
+  "QuickSearchParam": "SiName",
+  "References": [
+    {
+      "CardType": null,
+      "CardTypeColumn": null,
+      "ColPrefix": "Si",
+      "Condition": null,
+      "DisplayValueColumn": null,
+      "IsCard": true,
+      "OpenOnDoubleClick": true,
+      "RefSection": [
+        {
+          "::single_type": "str"
+        },
+        "SiRoutetypes"
+      ]
+    }
+  ],
+  "RowCountSubset": null,
+  "RowCounterVisible": false,
+  "SelectionMode": "Row",
+  "Subsets": [
+    {
+      "Alias": "Subset1",
+      "Caption": null,
+      "CaptionColumn": null,
+      "Condition": null,
+      "CountColumn": null,
+      "HideZeroCount": false,
+      "Kind": "List",
+      "RefColumn": null,
+      "RefParam": null,
+      "TreeHasChildrenColumn": null,
+      "TreeRefParam": null
+    }
+  ],
+  "TagsPosition": "None",
+  "TreatAsSingleQuery": false,
+  "TreeGroup": null,
+  "TreeGroupDisplayValue": null,
+  "TreeGroupId": null,
+  "TreeGroupParentId": null,
+  "TreeId": null,
+  "TreeParentId": null
+}
+
+[TEXTPART SiRoutetypes MSSQL]
+
+
+[TEXTPART SiRoutetypes PGSQL]
+SELECT
+	"r"."ID" as "SiID",
+	"r"."Name" as "SiName",
+	string_agg("SiDocumentTypesCaption", ', ') as "SiDocumentTypesCaption"
+	
+FROM "SiDoctypesroute" AS "t"
+FULL JOIN "SiInfo" AS "r"
+		ON "r"."ID" = "t"."ID"
+CROSS JOIN "Localization"("t"."DocumentTypesCaption", #param(locale)) AS "SiDocumentTypesCaption"
+
+WHERE true
+	#param(SiID, "t"."ID")
+	#param(SiName, "r"."Name")
+	#param(SiDocumentTypesCaption, "t"."DocumentTypesCaption")
+	#if(!ShowHidden || ShowHidden.CriteriaName != "IsTrue") {
+		AND "r"."Hidden" = false
+		}
+	
+	group by "r"."ID"
+	ORDER BY #order_by
+	
+#if(PageOffset) {
+OFFSET #param(PageOffset) - 1 LIMIT #param(PageLimit)
+}
+

@@ -2,18 +2,22 @@
   {
     ".method::int": 2,
     "Card": {
-      "Created::dtm": "2024-07-11T11:11:25.143039Z",
+      "Created::dtm": "2024-07-30T13:51:15.755745Z",
       "CreatedByID::uid": "3db19fa0-228a-497f-873a-0250bf0a4ccb",
       "CreatedByName": "Admin",
       "Files": null,
       "Flags::int": 0,
       "ID::uid": "f9575f79-9988-445d-879b-008711308828",
       "Info": null,
-      "Modified::dtm": "2024-07-11T11:11:25.143039Z",
+      "Modified::dtm": "2024-07-30T13:51:15.755745Z",
       "ModifiedByID::uid": "3db19fa0-228a-497f-873a-0250bf0a4ccb",
       "ModifiedByName": "Admin",
       "Permissions": null,
       "Sections": {
+        "Condition_FieldChangedCondition": {
+          ".table::int": 1,
+          "Rows": null
+        },
         "Condition_KrDepartmentCondition": {
           ".table::int": 1,
           "Rows": null
@@ -34,11 +38,39 @@
           ".table::int": 1,
           "Rows": null
         },
+        "Condition_KrTaskTypeConditionTaskRoles": {
+          ".table::int": 1,
+          "Rows": null
+        },
         "Condition_KrUsersCondition": {
           ".table::int": 1,
           "Rows": null
         },
+        "Condition_TagCondition": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "Condition_TaskConditionCompletionOptions": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "Condition_TaskConditionFunctionRoles": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "Condition_TaskConditionTaskKinds": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "Condition_TaskConditionTaskTypes": {
+          ".table::int": 1,
+          "Rows": null
+        },
         "ConditionsVirtual": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "KrPermissionAclGenerationRules": {
           ".table::int": 1,
           "Rows": null
         },
@@ -66,11 +98,11 @@
           ".table::int": 1,
           "Rows": null
         },
-        "KrPermissionExtendedMandatoryRules": {
+        "KrPermissionExtendedMandatoryRuleTypes": {
           ".table::int": 1,
           "Rows": null
         },
-        "KrPermissionExtendedMandatoryRuleTypes": {
+        "KrPermissionExtendedMandatoryRules": {
           ".table::int": 1,
           "Rows": null
         },
@@ -78,11 +110,11 @@
           ".table::int": 1,
           "Rows": null
         },
-        "KrPermissionExtendedTaskRules": {
+        "KrPermissionExtendedTaskRuleTypes": {
           ".table::int": 1,
           "Rows": null
         },
-        "KrPermissionExtendedTaskRuleTypes": {
+        "KrPermissionExtendedTaskRules": {
           ".table::int": 1,
           "Rows": null
         },
@@ -101,101 +133,13 @@
             }
           ]
         },
-        "KrPermissions": {
-          "Fields": {
-            "CanAddFiles": false,
-            "CanAddTopics": false,
-            "CanCreateCard": false,
-            "CanCreateResolutions": false,
-            "CanCreateTemplateAndCopy": false,
-            "CanDeleteCard": false,
-            "CanDeleteFiles": false,
-            "CanDeleteOwnFiles": false,
-            "CanEditAllMessages": false,
-            "CanEditCard": false,
-            "CanEditFiles": false,
-            "CanEditMyMessages": false,
-            "CanEditNumber": false,
-            "CanEditOwnFiles": false,
-            "CanEditRoute": false,
-            "CanFullRecalcRoute": false,
-            "CanReadAllTopics": false,
-            "CanReadAndSendMessageInAllTopics": false,
-            "CanReadCard": true,
-            "CanSignFiles": false,
-            "CanSkipStages": false,
-            "CanSubscribeForNotifications": false,
-            "CanSuperModeratorMode": false,
-            "Caption": "Default acquaintance access rule",
-            "Conditions": [],
-            "Description": null,
-            "IsDisabled": false,
-            "IsExtended": false,
-            "IsRequired": false,
-            "Permissions": null,
-            "Priority::int": 0,
-            "Roles": "Ознакомление",
-            "States": null,
-            "Types": null
-          }
-        },
         "KrPermissionStates": {
           ".table::int": 1,
           "Rows": [
             {
-              "RowID::uid": "a62af057-41de-4ec0-9088-700cf3966903",
-              "StateID::int": 2,
-              "StateName": "$KrStates_Doc_Approved"
-            },
-            {
-              "RowID::uid": "f6d215e9-a01e-4cf4-9e49-d996b45818b9",
-              "StateID::int": 6,
-              "StateName": "$KrStates_Doc_Registered"
-            },
-            {
-              "RowID::uid": "0db8d2d9-5c28-49c6-ad6d-be7cee948a3f",
-              "StateID::int": 4,
-              "StateName": "$KrStates_Doc_Editing"
-            },
-            {
-              "RowID::uid": "5783952d-64b1-43ec-a848-8b1757953b1e",
-              "StateID::int": 10,
-              "StateName": "$KrStates_Doc_Signing"
-            },
-            {
-              "RowID::uid": "3d09dc50-74e8-42e0-aa53-b137b1e9fbfa",
-              "StateID::int": 7,
-              "StateName": "$KrStates_Doc_Registration"
-            },
-            {
-              "RowID::uid": "0f80775b-927b-4ff6-a9d5-a8a8ef026c82",
-              "StateID::int": 1,
-              "StateName": "$KrStates_Doc_Active"
-            },
-            {
-              "RowID::uid": "6e820545-16d4-4f9f-8670-0f3aadc9512c",
-              "StateID::int": 3,
-              "StateName": "$KrStates_Doc_Disapproved"
-            },
-            {
-              "RowID::uid": "cc9628a0-d9ac-4bb6-8b58-0fe153fe3849",
-              "StateID::int": 9,
-              "StateName": "$KrStates_Doc_Declined"
-            },
-            {
-              "RowID::uid": "43f5fa00-c0d5-485f-a091-568e9779ad5a",
-              "StateID::int": 5,
-              "StateName": "$KrStates_Doc_Canceled"
-            },
-            {
-              "RowID::uid": "310b5c33-7bd2-4bdd-86a1-7b2e66755487",
-              "StateID::int": 8,
-              "StateName": "$KrStates_Doc_Signed"
-            },
-            {
-              "RowID::uid": "628d9a90-ca71-42ed-be7b-5f032f222413",
-              "StateID::int": 0,
-              "StateName": "$KrStates_Doc_Draft"
+              "RowID::uid": "f0193611-1750-4d08-889e-06d2845abd0c",
+              "StateID::int": 1000,
+              "StateName": "$RefGroups_Group_AllStates"
             }
           ]
         },
@@ -263,6 +207,47 @@
               "TypeIsDocType": true
             }
           ]
+        },
+        "KrPermissions": {
+          "Fields": {
+            "AclGenerationRules": "",
+            "CanAddFiles": false,
+            "CanAddTopics": false,
+            "CanCreateCard": false,
+            "CanCreateResolutions": false,
+            "CanCreateTemplateAndCopy": false,
+            "CanDeleteCard": false,
+            "CanDeleteFiles": false,
+            "CanDeleteOwnFiles": false,
+            "CanEditAllMessages": false,
+            "CanEditCard": false,
+            "CanEditFiles": false,
+            "CanEditMyMessages": false,
+            "CanEditNumber": false,
+            "CanEditOwnFiles": false,
+            "CanEditRoute": false,
+            "CanFullRecalcRoute": false,
+            "CanModifyAllTaskAssignedRoles": false,
+            "CanModifyOwnTaskAssignedRoles": false,
+            "CanReadAllTopics": false,
+            "CanReadAndSendMessageInAllTopics": false,
+            "CanReadCard": true,
+            "CanSignFiles": false,
+            "CanSkipStages": false,
+            "CanSubscribeForNotifications": false,
+            "CanSuperModeratorMode": false,
+            "Caption": "Default acquaintance access rule",
+            "Conditions": [],
+            "Description": null,
+            "IsDisabled": false,
+            "IsExtended": false,
+            "IsRequired": false,
+            "Permissions": null,
+            "Priority::int": 0,
+            "Roles": "Ознакомление",
+            "States": null,
+            "Types": null
+          }
         }
       },
       "TaskHistory": null,

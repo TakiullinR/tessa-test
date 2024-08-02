@@ -2,14 +2,14 @@
   {
     ".method::int": 2,
     "Card": {
-      "Created::dtm": "2024-07-11T11:11:17.116511Z",
+      "Created::dtm": "2024-07-30T13:51:09.128599Z",
       "CreatedByID::uid": "3db19fa0-228a-497f-873a-0250bf0a4ccb",
       "CreatedByName": "Admin",
       "Files": null,
       "Flags::int": 0,
       "ID::uid": "77fd0adc-24d9-426f-9397-c1ee0d175b93",
       "Info": null,
-      "Modified::dtm": "2024-07-17T12:46:20.318093Z",
+      "Modified::dtm": "2024-08-01T09:20:55.555928Z",
       "ModifiedByID::uid": "3db19fa0-228a-497f-873a-0250bf0a4ccb",
       "ModifiedByName": "Admin",
       "Permissions": null,
@@ -60,7 +60,7 @@
     },
     "FileMapping": null,
     "Info": {
-      ".importVersion::int": 19
+      ".importVersion::int": 10
     }
   }
 ]

@@ -2,31 +2,48 @@
   {
     ".method::int": 2,
     "Card": {
-      "Created::dtm": "2024-07-12T07:38:08.315523Z",
+      "Created::dtm": "2024-07-31T07:28:38.047566Z",
       "CreatedByID::uid": "3db19fa0-228a-497f-873a-0250bf0a4ccb",
       "CreatedByName": "Admin",
       "Files": null,
       "Flags::int": 0,
-      "ID::uid": "02078681-f8d8-4dae-b670-34de715d6d85",
+      "ID::uid": "b5db7f2b-6267-4b8b-945a-85e437bc4074",
       "Info": null,
-      "Modified::dtm": "2024-07-16T19:22:20.002412Z",
+      "Modified::dtm": "2024-07-31T07:36:18.640103Z",
       "ModifiedByID::uid": "3db19fa0-228a-497f-873a-0250bf0a4ccb",
       "ModifiedByName": "Admin",
       "Permissions": null,
       "Sections": {
         "DepartmentRoles": {
           "Fields": {
-            "HeadUserID::uid": "af2b1e2a-cbb2-4aa8-9b76-af09a316ff20",
-            "HeadUserName": "Петров С.Б."
+            "HeadUserID::uid": "9215b59b-abd9-4752-8d72-31c16c72ff39",
+            "HeadUserName": "Иванов И."
           }
         },
         "RoleDeputies": {
           ".table::int": 1,
           "Rows": null
         },
-        "RoleDeputiesVirtual": {
+        "RoleUsers": {
           ".table::int": 1,
           "Rows": null
+        },
+        "RoleUsersVirtual": {
+          ".table::int": 1,
+          "Rows": [
+            {
+              ".state::int": 2,
+              "RowID::uid": "03d5d59d-a1f2-46a9-8ba2-237cef7f3d1c",
+              "UserID::uid": "9215b59b-abd9-4752-8d72-31c16c72ff39",
+              "UserName": "Иванов И."
+            },
+            {
+              ".state::int": 2,
+              "RowID::uid": "4ccf6b82-883c-4afe-b885-564e424da661",
+              "UserID::uid": "878d7341-6f4f-4e10-91d2-88d533629a74",
+              "UserName": "Петров П."
+            }
+          ]
         },
         "Roles": {
           "Fields": {
@@ -37,8 +54,12 @@
             "AdSyncID": null,
             "AdSyncIndependent": false,
             "AdSyncWhenChanged": null,
+            "CalendarID::uid": "64b9230d-5422-466d-bb19-f9882bb87b78",
+            "CalendarName": "$Calendars_DefaultCalendar",
+            "DeputiesExpired::dtm": "9999-12-31T00:00:00Z",
             "Description": null,
-            "ExternalID": "13",
+            "DisableDeputies": false,
+            "ExternalID": "104",
             "Hidden": false,
             "InheritTimeZone": true,
             "Name": "Кадры",
@@ -50,21 +71,6 @@
             "TimeZoneUtcOffsetMinutes::int": 180,
             "TypeID::int": 2
           }
-        },
-        "RoleUsers": {
-          ".table::int": 1,
-          "Rows": null
-        },
-        "RoleUsersVirtual": {
-          ".table::int": 1,
-          "Rows": [
-            {
-              ".state::int": 2,
-              "RowID::uid": "6c3587b7-5b89-4cbd-a86c-5fa2090c51a8",
-              "UserID::uid": "af2b1e2a-cbb2-4aa8-9b76-af09a316ff20",
-              "UserName": "Петров С.Б."
-            }
-          ]
         }
       },
       "TaskHistory": null,
@@ -78,7 +84,7 @@
     },
     "FileMapping": null,
     "Info": {
-      ".importVersion::int": 6
+      ".importVersion::int": 4
     }
   }
 ]

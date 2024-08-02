@@ -1,0 +1,84 @@
+﻿[
+  {
+    ".method::int": 2,
+    "Card": {
+      "Created::dtm": "2024-08-02T11:29:17.53785Z",
+      "CreatedByID::uid": "3db19fa0-228a-497f-873a-0250bf0a4ccb",
+      "CreatedByName": "Admin",
+      "Files": null,
+      "Flags::int": 0,
+      "ID::uid": "faf3bcf8-bc82-428e-a4ef-3ca4d29e6db8",
+      "Info": null,
+      "Modified::dtm": "2024-08-02T11:31:55.098321Z",
+      "ModifiedByID::uid": "3db19fa0-228a-497f-873a-0250bf0a4ccb",
+      "ModifiedByName": "Admin",
+      "Permissions": null,
+      "Sections": {
+        "DepartmentRoles": {
+          "Fields": {
+            "HeadUserID::uid": "3e705b51-aca9-4853-9e0d-ed4ee88dca24",
+            "HeadUserName": "Быков Виктор"
+          }
+        },
+        "RoleDeputies": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "RoleUsers": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "RoleUsersVirtual": {
+          ".table::int": 1,
+          "Rows": [
+            {
+              ".state::int": 2,
+              "RowID::uid": "1ba13b82-027b-43ec-97de-b2ce8ed4ceae",
+              "UserID::uid": "3e705b51-aca9-4853-9e0d-ed4ee88dca24",
+              "UserName": "Быков Виктор"
+            }
+          ]
+        },
+        "Roles": {
+          "Fields": {
+            "AdSyncDate": null,
+            "AdSyncDisableUpdate": null,
+            "AdSyncDistinguishedName": null,
+            "AdSyncHash": null,
+            "AdSyncID": null,
+            "AdSyncIndependent": false,
+            "AdSyncWhenChanged": null,
+            "CalendarID::uid": "64b9230d-5422-466d-bb19-f9882bb87b78",
+            "CalendarName": "$Calendars_DefaultCalendar",
+            "DeputiesExpired::dtm": "9999-12-31T00:00:00Z",
+            "Description": null,
+            "DisableDeputies": false,
+            "ExternalID": null,
+            "Hidden": false,
+            "InheritTimeZone": true,
+            "Name": "Управление",
+            "ParentID": null,
+            "ParentName": null,
+            "TimeZoneCodeName": "Default",
+            "TimeZoneID::int": 0,
+            "TimeZoneShortName": "UTC+03:00",
+            "TimeZoneUtcOffsetMinutes::int": 180,
+            "TypeID::int": 2
+          }
+        }
+      },
+      "TaskHistory": null,
+      "TaskHistoryGroups": null,
+      "Tasks": null,
+      "Topics": null,
+      "TypeCaption": "$CardTypes_TypesNames_DepartmentRole",
+      "TypeID::uid": "abe57cb7-e1cb-06f6-b7ca-ad1668bebd72",
+      "TypeName": "DepartmentRole",
+      "Version::int": 0
+    },
+    "FileMapping": null,
+    "Info": {
+      ".importVersion::int": 2
+    }
+  }
+]

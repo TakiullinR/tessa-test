@@ -2,31 +2,48 @@
   {
     ".method::int": 2,
     "Card": {
-      "Created::dtm": "2024-07-12T07:37:39.182254Z",
+      "Created::dtm": "2024-07-31T07:29:24.398707Z",
       "CreatedByID::uid": "3db19fa0-228a-497f-873a-0250bf0a4ccb",
       "CreatedByName": "Admin",
       "Files": null,
       "Flags::int": 0,
-      "ID::uid": "96b06bc9-54f8-4963-82ff-274a9588ba53",
+      "ID::uid": "68cc730c-adfa-4de9-acea-8b0a1fcfcc14",
       "Info": null,
-      "Modified::dtm": "2024-07-16T19:22:10.474861Z",
+      "Modified::dtm": "2024-07-31T07:36:57.585299Z",
       "ModifiedByID::uid": "3db19fa0-228a-497f-873a-0250bf0a4ccb",
       "ModifiedByName": "Admin",
       "Permissions": null,
       "Sections": {
         "DepartmentRoles": {
           "Fields": {
-            "HeadUserID::uid": "9a73845b-f850-4cd3-ab5c-e0453b785975",
-            "HeadUserName": "Такиуллин Р."
+            "HeadUserID::uid": "ddade667-96a9-4726-9f28-0de93ed44dc4",
+            "HeadUserName": "Сидоров В."
           }
         },
         "RoleDeputies": {
           ".table::int": 1,
           "Rows": null
         },
-        "RoleDeputiesVirtual": {
+        "RoleUsers": {
           ".table::int": 1,
           "Rows": null
+        },
+        "RoleUsersVirtual": {
+          ".table::int": 1,
+          "Rows": [
+            {
+              ".state::int": 2,
+              "RowID::uid": "045cf7de-92b4-414a-b044-2b4b737400a7",
+              "UserID::uid": "ddade667-96a9-4726-9f28-0de93ed44dc4",
+              "UserName": "Сидоров В."
+            },
+            {
+              ".state::int": 2,
+              "RowID::uid": "79093ded-1234-455d-9ca2-ff5a5c3f31d1",
+              "UserID::uid": "24cdb594-f487-4c47-b4ae-163cd126455f",
+              "UserName": "Козлов Д."
+            }
+          ]
         },
         "Roles": {
           "Fields": {
@@ -37,8 +54,12 @@
             "AdSyncID": null,
             "AdSyncIndependent": false,
             "AdSyncWhenChanged": null,
+            "CalendarID::uid": "64b9230d-5422-466d-bb19-f9882bb87b78",
+            "CalendarName": "$Calendars_DefaultCalendar",
+            "DeputiesExpired::dtm": "9999-12-31T00:00:00Z",
             "Description": null,
-            "ExternalID": "12",
+            "DisableDeputies": false,
+            "ExternalID": "115",
             "Hidden": false,
             "InheritTimeZone": true,
             "Name": "Бухгалтерия",
@@ -50,27 +71,6 @@
             "TimeZoneUtcOffsetMinutes::int": 180,
             "TypeID::int": 2
           }
-        },
-        "RoleUsers": {
-          ".table::int": 1,
-          "Rows": null
-        },
-        "RoleUsersVirtual": {
-          ".table::int": 1,
-          "Rows": [
-            {
-              ".state::int": 2,
-              "RowID::uid": "a71c94a9-3941-4f5a-a846-d903b1d763b1",
-              "UserID::uid": "59b33427-4d61-427e-b023-9d36b6081037",
-              "UserName": "Иванов И."
-            },
-            {
-              ".state::int": 2,
-              "RowID::uid": "3c980d73-042d-4bf7-a409-ec06586e1792",
-              "UserID::uid": "9a73845b-f850-4cd3-ab5c-e0453b785975",
-              "UserName": "Такиуллин Р."
-            }
-          ]
         }
       },
       "TaskHistory": null,
@@ -84,7 +84,7 @@
     },
     "FileMapping": null,
     "Info": {
-      ".importVersion::int": 7
+      ".importVersion::int": 4
     }
   }
 ]

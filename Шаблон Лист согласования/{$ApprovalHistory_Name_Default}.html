@@ -6,6 +6,7 @@
 #using Tessa.Extensions.Default.Shared; 
 #using Tessa.Extensions.Default.Shared.VirtualFiles; 
 #using Tessa.Extensions.Default.Shared.Workflow.KrProcess;
+#using Tessa.BusinessCalendar;
 
 // Т.к. в файле есть ссылка на его другую версию, пишем ID виртуального файла и печатной версии файла здесь
 var virtualFileID = KrVirtualFilesHelper.ApprovalListFileID;
@@ -17,14 +18,23 @@ var ascendingOrder = (await context.Container.Resolve<ICardCache>().Cards.GetAsy
                     .RawFields
                     .Get<bool>("AscendingApprovalList");
 
-var webClient = context.Session.IsWebClient();
+context.Info["CalendarTextFormatter"] = context.Container.Resolve<ICalendarTextFormatter>();
+
+var disableDesktopLink = await context.DesktopLinksAreDisabledAsync();
+// если отключены ссылки на desktop-клиент, это равносильно работе web-клиента. Должны быть только web-ссылки.
+var webClient = disableDesktopLink || context.Session.ApplicationID == ApplicationIdentifiers.WebClient;
 var webAddress = await CardHelper.TryGetWebAddressAsync(context.Container.Resolve<ICardCache>());
 var isPrintable = context.Info.TryGet<bool>("PrintableList");
 var cardID = await context.GetCardIDAsync();
+var utcNow = DateTime.UtcNow;
+
+var sessionTimeZoneOffset = context.Container.Resolve<ISession>().Token.TimeZoneUtcOffset;
+context.Info["SessionUtcNow"] = utcNow + sessionTimeZoneOffset;
+context.Info["SessionTimeZoneOffset"] = sessionTimeZoneOffset;
 
 var ignoreTypes = new Guid[]
-{   new Guid(0x75af7df8, 0xeeb9, 0x4d5d, 0x8a, 0xf9, 0x53, 0x82, 0x15, 0x9f, 0xdb, 0xb2),  // 75af7df8-eeb9-4d5d-8af9-5382159fdbb2
-    new Guid(0xfc6f6e71, 0xcb9c, 0x4902, 0xb9, 0xf5, 0xd6, 0xba, 0x22, 0x31, 0x74, 0xd8),  // fc6f6e71-cb9c-4902-b9f5-d6ba223174d8
+{
+    KrConstants.KrDeregistrationTypeID,
     DefaultTaskTypes.KrRequestCommentTypeID,
     DefaultTaskTypes.KrInfoRequestCommentTypeID
 };
@@ -72,9 +82,9 @@ string FormatFileLink(KrHistoryFileItem fileItem)
 context.Info["FormatFileLinkFunc"] = new Func<KrHistoryFileItem, string>(x => FormatFileLink(x));
 
 // Метод для получения квантов с момента создания, с момента взятия в работу и момента до истечения срока задания (или расчет просрочки)
-async Task<Dictionary<Guid, (int?, int?, int?)>> GetApprovalTaskItemsAsync(IDbScope dbScope)
+async Task<Dictionary<Guid, (int?, DateTime?, int?, DateTime?, int?, DateTime?, Guid?, string)>> GetApprovalTaskItemsAsync(IDbScope dbScope)
 {
-    var items = new Dictionary<Guid, (int?, int?, int?)>();
+    var items = new Dictionary<Guid, (int?, DateTime?, int?, DateTime?, int?, DateTime?, Guid?, string)>();
     await using (dbScope.Create())
     {
         var db = dbScope.Db;
@@ -83,18 +93,45 @@ async Task<Dictionary<Guid, (int?, int?, int?)>> GetApprovalTaskItemsAsync(IDbSc
         db
             .SetCommand(
                 builderFactory
-                    .Select().C("t", "RowID")
-                    .CastAs(b => b.C("cq4", "QuantNumber").Substract().C("cq1", "QuantNumber"), SchemeDbType.Int32).As("CreatedQuants")
-                    .CastAs(b => b.C("cq4", "QuantNumber").Substract().C("cq2", "QuantNumber"), SchemeDbType.Int32).As("InProgressQuants")
-                    .CastAs(b => b.C("cq3", "QuantNumber").Substract().C("cq4", "QuantNumber"), SchemeDbType.Int32).As("RemainingQuants")
+                    .Select()
+                        .C("t", "RowID")
+                        .CastAs(b => b.C("cq4", "QuantNumber").Substract().C("cq1", "QuantNumber"), SchemeDbType.Int32).As("CreatedQuants")
+                        .C("t","Created")
+                        .CastAs(b => b.C("cq4", "QuantNumber").Substract().C("cq2", "QuantNumber"), SchemeDbType.Int32).As("InProgressQuants")
+                        .C("t","InProgress")
+                        .CastAs(b => b.C("cq3", "QuantNumber").Substract().C("cq4", "QuantNumber"), SchemeDbType.Int32).As("RemainingQuants")
+                        .C("t","Planned")
+                        .C("t", "CalendarID")
+                        .If(Dbms.SqlServer, 
+                            v => v.Q(", STUFF((")
+                            .Select().Q(" N', ' + ").C("tar", "RoleName"))
+                        .ElseIf(Dbms.PostgreSql,
+                            v => v.Q(", (").Select().Q(" string_agg(").C("tar", "RoleName").Q(", ', ')"))
+                        .ElseThrow()
+                        .From("TaskAssignedRoles", "tar").NoLock()
+                        .Where()
+                            .C("tar", "ID").Equals().C("t", "RowID")
+                           .And()
+                           .C("tar", "ParentRowID").IsNull()
+                           .And()
+                           .C("tar", "TaskRoleID").Equals().P("PerformerFunctionRoleID")
+                        .If(Dbms.SqlServer, 
+                            v => v.Q(" FOR XML PATH('')), 1, 2, N'')"))
+                        .ElseIf(Dbms.PostgreSql,
+                            v => v.Q(")"))
+                        .ElseThrow().As("RoleName")
                     .From("Tasks", "t").NoLock()
+                    .InnerJoin("CalendarSettings", "cs").NoLock()
+                        .On().C("cs", "ID").Equals().C("t", "CalendarID")
                     .InnerJoin("KrActiveTasks", "kat").NoLock()
                         .On().C("kat", "TaskID").Equals().C("t", "RowID")
                     .LeftJoinLateral(b => b
                         .Select()
-                            .Top(1).C("q", "QuantNumber")
+                             .Top(1).C("q", "QuantNumber")
                         .From("CalendarQuants", "q").NoLock()
                         .Where()
+                            .C("q", "ID").Equals().C("cs", "CalendarID")
+                            .And()
                             .C("q", "StartTime").LessOrEquals()
                             .If(Dbms.SqlServer,
                                 v => v.Q(" DATEADD(minute, ").C("t", "TimeZoneUtcOffsetMinutes").Q(", ")
@@ -108,9 +145,11 @@ async Task<Dictionary<Guid, (int?, int?, int?)>> GetApprovalTaskItemsAsync(IDbSc
                         "cq1")
                     .LeftJoinLateral(b => b
                         .Select()
-                            .Top(1).C("q", "QuantNumber")
+                             .Top(1).C("q", "QuantNumber")
                         .From("CalendarQuants", "q").NoLock()
                         .Where()
+                            .C("q", "ID").Equals().C("cs", "CalendarID")
+                            .And()
                             .C("q", "StartTime").LessOrEquals()
                             .If(Dbms.SqlServer,
                                 v => v.Q(" DATEADD(minute, ").C("t", "TimeZoneUtcOffsetMinutes").Q(", ")
@@ -124,9 +163,11 @@ async Task<Dictionary<Guid, (int?, int?, int?)>> GetApprovalTaskItemsAsync(IDbSc
                         "cq2")
                     .LeftJoinLateral(b => b
                         .Select()
-                            .Top(1).C("q", "QuantNumber")
+                             .Top(1).C("q", "QuantNumber")
                         .From("CalendarQuants", "q").NoLock()
                         .Where()
+                            .C("q", "ID").Equals().C("cs", "CalendarID")
+                            .And()
                             .C("q", "StartTime").LessOrEquals()
                             .If(Dbms.SqlServer,
                                 v => v.Q(" DATEADD(minute, ").C("t", "TimeZoneUtcOffsetMinutes").Q(", ")
@@ -140,9 +181,11 @@ async Task<Dictionary<Guid, (int?, int?, int?)>> GetApprovalTaskItemsAsync(IDbSc
                         "cq3")
                     .LeftJoinLateral(b => b
                         .Select()
-                            .Top(1).C("q", "QuantNumber")
+                             .Top(1).C("q", "QuantNumber")
                         .From("CalendarQuants", "q").NoLock()
                         .Where()
+                            .C("q", "ID").Equals().C("cs", "CalendarID")
+                            .And()
                             .C("q", "StartTime").LessOrEquals()
                             .If(Dbms.SqlServer,
                                 v => v.Q(" DATEADD(minute, ").C("t", "TimeZoneUtcOffsetMinutes").Q(", ")
@@ -157,14 +200,23 @@ async Task<Dictionary<Guid, (int?, int?, int?)>> GetApprovalTaskItemsAsync(IDbSc
                     .Where().C("t", "ID").Equals().P("ID")
                     .Build(),
                 db.Parameter("ID", cardID),
-                db.Parameter("UtcNow", DateTime.UtcNow))
+                db.Parameter("UtcNow", utcNow),
+                db.Parameter("PerformerFunctionRoleID", CardFunctionRoles.PerformerID))
             .LogCommand();
 
         await using (var reader = await db.ExecuteReaderAsync())
         {
             while (await reader.ReadAsync())
             {
-                items[reader.GetValue<Guid>(0)] = (reader.GetValue<int?>(1), reader.GetValue<int?>(2), reader.GetValue<int?>(3));
+                items[reader.GetValue<Guid>(0)] =
+                    (reader.GetValue<int?>(1),
+                    reader.GetValue<DateTime?>(2),
+                    reader.GetValue<int?>(3),
+                    reader.GetValue<DateTime?>(4),
+                    reader.GetValue<int?>(5),
+                    reader.GetValue<DateTime?>(6),
+                    reader.GetValue<Guid?>(7),
+                    reader.GetValue<string>(8));
             }
         }
     }
@@ -186,9 +238,14 @@ async Task<Dictionary<Guid, KrHistoryItem>> GetApprovalHistoryItemsAsync(
                 .C("fv", "ID", "Created", "RowID", "Name")
                 .C("kr", "Cycle")
                 .CastAs(b => b.C("cq2", "QuantNumber").Substract().C("cq1", "QuantNumber"), SchemeDbType.Int32).As("CompletedQuants")
+                .C("th", "Created", "Completed")
+                .C("th", "CalendarID")
+                .C("th", "CompletedByRole")
             .From("KrApprovalHistory", "kr").NoLock()
             .InnerJoin("TaskHistory", "th").NoLock()
                 .On().C("th", "RowID").Equals().C("kr", "HistoryRecord")
+            .InnerJoin("CalendarSettings", "cs").NoLock()
+                .On().C("cs", "ID").Equals().C("th", "CalendarID")
             .LeftJoinLateral(b => b
                 .Select().C("v", "RowID", "ID", "Created", "Name")
                 .From("Files", "f").NoLock()
@@ -201,34 +258,36 @@ async Task<Dictionary<Guid, KrHistoryItem>> GetApprovalHistoryItemsAsync(
                     .And().C("v", "Created").LessOrEquals().C("th", "Completed"),
                 "fv")
             .LeftJoinLateral(b => b
-                .Select()
-                    .Top(1).C("q", "QuantNumber")
+                .Select().Top(1).C("q", "QuantNumber")
                 .From("CalendarQuants", "q").NoLock()
                 .Where()
-                    .C("q", "StartTime").LessOrEquals()
-                    .If(Dbms.SqlServer,
+                   .C("q", "ID").Equals().C("cs", "CalendarID")
+                   .And()
+                   .C("q", "StartTime").LessOrEquals()
+                   .If(Dbms.SqlServer,
                         v => v.Q(" DATEADD(minute, ").C("th", "TimeZoneUtcOffsetMinutes").Q(", ")
                             .C("th", "Created").Q(")"))
-                    .ElseIf(Dbms.PostgreSql,
+                   .ElseIf(Dbms.PostgreSql,
                         v => v.Q("(").C("th", "Created").Add().C("th", "TimeZoneUtcOffsetMinutes")
                             .Q(" * interval '1 minute')"))
-                    .ElseThrow()
+                   .ElseThrow()
                 .OrderBy("q", "StartTime", SortOrder.Descending)
                 .Limit(1),
                 "cq1")
             .LeftJoinLateral(b => b
-                .Select()
-                    .Top(1).C("q", "QuantNumber")
+                .Select().Top(1).C("q", "QuantNumber")
                 .From("CalendarQuants", "q").NoLock()
                 .Where()
-                    .C("q", "StartTime").LessOrEquals()
-                    .If(Dbms.SqlServer,
+                   .C("q", "ID").Equals().C("cs", "CalendarID")
+                   .And()
+                   .C("q", "StartTime").LessOrEquals()
+                   .If(Dbms.SqlServer,
                         v => v.Q(" DATEADD(minute, ").C("th", "TimeZoneUtcOffsetMinutes").Q(", ")
                             .C("th", "Completed").Q(")"))
-                    .ElseIf(Dbms.PostgreSql,
+                   .ElseIf(Dbms.PostgreSql,
                         v => v.Q("(").C("th", "Completed").Add().C("th", "TimeZoneUtcOffsetMinutes")
                             .Q(" * interval '1 minute')"))
-                    .ElseThrow()
+                   .ElseThrow()
                 .OrderBy("q", "StartTime", SortOrder.Descending)
                 .Limit(1),
                 "cq2")
@@ -248,7 +307,8 @@ async Task<Dictionary<Guid, KrHistoryItem>> GetApprovalHistoryItemsAsync(
         db
             .SetCommand(
                 builder.Build(),
-                db.Parameter("ID", cardID))
+                db.Parameter("ID", cardID),
+                db.Parameter("PerformerFunctionRoleID", CardFunctionRoles.PerformerID))
             .LogCommand();
 
         KrHistoryItem prevItem = null;
@@ -310,7 +370,10 @@ async Task<Dictionary<Guid, KrHistoryItem>> GetApprovalHistoryItemsAsync(
                     prevItem.RowID = itemRowID;
                     prevItem.Cycle = reader.GetValue<short>(5);
                     prevItem.CompletedQuants = reader.GetValue<int?>(6);
-
+                    prevItem.Created = reader.GetDateTimeUtc(7);
+                    prevItem.Completed = reader.GetDateTimeUtc(8);
+                    prevItem.CalendarID = reader.GetValue<Guid?>(9);
+                    prevItem.RoleName = reader.GetValue<string>(10);
                     items[itemRowID] = prevItem;
                 }
             }
@@ -554,7 +617,7 @@ async Task<Dictionary<Guid, KrHistoryItem>> GetApprovalHistoryItemsAsync(
                     "}" 
                     ##>
                     <# // Если для данного задания нет дополнительной информации о задании, данную строку не выводим
-                    if (!context.Info.Get<Dictionary<Guid, (int?, int?, int?)>>("TaskItems").TryGetValue(await context.GetValueFromPlaceholderAsync<Guid>("t:Tasks.RowID"), out var item))
+                    if (!context.Info.Get<Dictionary<Guid, (int?, DateTime?, int?, DateTime?, int?, DateTime?, Guid?, string)>>("TaskItems").TryGetValue(await context.GetValueFromPlaceholderAsync<Guid>("t:Tasks.RowID"), out var item))
                     {
                         return string.Empty;
                     }
@@ -571,27 +634,58 @@ async Task<Dictionary<Guid, KrHistoryItem>> GetApprovalHistoryItemsAsync(
                         textBuilder.Append(cnt); 
                         context.Info["TaskItemsCounter"] = cnt - 1; 
                     } #></td>
-                    <td width='18%'>{t:Tasks.RoleName}</td>
-                    <td width='18%'>{t:Tasks.UserName}</td>
-					<td>{t:TaskHistory.RoleID-(UserID)->RoleUsers.ID->DepartmentRoles.ID->Roles.Name}</td>
-                    <td width='22%'>{t:Tasks.InProgress:dd.MM.yyyy HH\:mm}
-                    <#
-                    if (item.Item2.HasValue)
+                    <td width='18%'>
+                    <# 
+                    if (!string.IsNullOrWhiteSpace(item.Item8))
                     {
-                        textBuilder.AppendFormat(" ({0})", (item.Item2.Value < 0 ? "{$Format_DateDiff_Overdue}&nbsp;" : null) + FormattingHelper.FormatDateDiff(item.Item2.Value).Replace(" ", "&nbsp;"));
+                        textBuilder.Append(item.Item8); 
+                    }
+                    #>
+                    </td>
+                    <td width='18%'>{t:Tasks.UserName}</td>
+					<td>{t:TaskHistory.UserID-(UserID)->RoleUsers.ID->DepartmentRoles.ID->Roles.Name}</td>
+                    <td width='22%'>{t:Tasks.InProgress:g}
+                    <#
+                    if (item.Item3.HasValue)
+                    {
+                        var calendarTextFormatter = context.Info.Get<ICalendarTextFormatter>("CalendarTextFormatter");
+                        var sessionUtcNow = context.Info.Get<DateTime>("SessionUtcNow");
+                        var sessionTimeZoneOffset = context.Info.Get<TimeSpan>("SessionTimeZoneOffset");
+                        DateTime? sessionInProgress =
+                                    item.Item4.HasValue
+                                        ? item.Item4.Value + sessionTimeZoneOffset
+                                        : null;
+                        var dateDiffText = await calendarTextFormatter.FormatDateDiffAsync(item.Item3.Value, sessionInProgress, sessionUtcNow, item.Item7.Value, useOnlyDaysInAstronomicMode: true);
+                        textBuilder.AppendFormat(" ({0})", (item.Item3.Value < 0 ? "{$Format_DateDiff_Overdue}&nbsp;" : null) + dateDiffText.Replace(" ", "&nbsp;"));
                     } #></td>
-                    <td width='22%'>{t:Tasks.Created:dd.MM.yyyy HH\:mm}
+                    <td width='22%'>{t:Tasks.Created:g}
                     <#
                     if (item.Item1.HasValue)
                     {
-                        textBuilder.AppendFormat(" ({0})", (item.Item1.Value < 0 ? "{$Format_DateDiff_Overdue}&nbsp;" : null) + FormattingHelper.FormatDateDiff(item.Item1.Value).Replace(" ", "&nbsp;"));
+                        var calendarTextFormatter = context.Info.Get<ICalendarTextFormatter>("CalendarTextFormatter");
+                        var sessionUtcNow = context.Info.Get<DateTime>("SessionUtcNow");
+                        var sessionTimeZoneOffset = context.Info.Get<TimeSpan>("SessionTimeZoneOffset");
+                        DateTime? sessionCreated =
+                                    item.Item2.HasValue
+                                        ? item.Item2.Value + sessionTimeZoneOffset
+                                        : null;
+                        var dateDiffText = await calendarTextFormatter.FormatDateDiffAsync(item.Item1.Value, sessionCreated, sessionUtcNow, item.Item7.Value, useOnlyDaysInAstronomicMode: true);
+                        textBuilder.AppendFormat(" ({0})", (item.Item1.Value < 0 ? "{$Format_DateDiff_Overdue}&nbsp;" : null) + dateDiffText.Replace(" ", "&nbsp;"));
                     } #></td>
                     <td width='17%'<#
-                    textBuilder.Append(item.Item3 < 0 ? "style='color:#cc0000'>" : ">");
+                    textBuilder.Append(item.Item5 < 0 ? "style='color:#cc0000'>" : ">");
                     
-                    if (item.Item3.HasValue)
+                    if (item.Item5.HasValue)
                     {
-                        textBuilder.Append((item.Item3.Value < 0 ? "{$Format_DateDiff_Overdue}&nbsp;" : null) + FormattingHelper.FormatDateDiff(item.Item3.Value).Replace(" ", "&nbsp;"));
+                        var calendarTextFormatter = context.Info.Get<ICalendarTextFormatter>("CalendarTextFormatter");
+                        var sessionUtcNow = context.Info.Get<DateTime>("SessionUtcNow");
+                        var sessionTimeZoneOffset = context.Info.Get<TimeSpan>("SessionTimeZoneOffset");
+                        DateTime? sessionPlanned =
+                                    item.Item6.HasValue
+                                        ? item.Item6.Value + sessionTimeZoneOffset
+                                        : null;
+                        var dateDiffText = await calendarTextFormatter.FormatDateDiffAsync(item.Item5.Value, sessionUtcNow, sessionPlanned, item.Item7.Value);
+                        textBuilder.Append((item.Item5.Value < 0 ? "{$Format_DateDiff_Overdue}&nbsp;" : null) + dateDiffText.Replace(" ", "&nbsp;"));
                     } #></td>
                 </tr>
                 </_row>
@@ -700,22 +794,27 @@ async Task<Dictionary<Guid, KrHistoryItem>> GetApprovalHistoryItemsAsync(
                         }
                         if (!hasRoleName)
                         {
-                            textBuilder.Append("{t:TaskHistory.RoleName}");
+                            textBuilder.Append(item.RoleName);
                         }
                         #>
                     </td>
-					<td>{t:TaskHistory.RoleID-(UserID)->RoleUsers.ID->DepartmentRoles.ID->Roles.Name}</td>
+					<td>{t:TaskHistory.UserID-(UserID)->RoleUsers.ID->DepartmentRoles.ID->Roles.Name}</td>
                     <td width='10%'>{t:TaskHistory.OptionCaption}</td><#
                     if (!context.Info.Get<bool>("IsPrintable"))
                     { #>
-                    <td width='10%'>{t:TaskHistory.Created:dd.MM.yyyy HH\:mm}</td>
+                    <td width='10%'>{t:TaskHistory.Created:g}</td>
                  <# } #>
                     <!-- Completed Column begin -->
-                    <td width='10%'>{t:TaskHistory.Completed:dd.MM.yyyy HH\:mm}<#
+                    <td width='10%'>{t:TaskHistory.Completed:g}<#
                     
-                    if (item.CompletedQuants.HasValue)
+                    if (item.CompletedQuants.HasValue || item.Completed.HasValue)
                     {
-                        textBuilder.AppendFormat(" ({0})", (item.CompletedQuants.Value < 0 ? "{$Format_DateDiff_Overdue}&nbsp;" : null) + FormattingHelper.FormatDateDiff(item.CompletedQuants.Value).Replace(" ", "&nbsp;"));
+                        var calendarTextFormatter = context.Info.Get<ICalendarTextFormatter>("CalendarTextFormatter");
+                        var sessionTimeZoneOffset = context.Info.Get<TimeSpan>("SessionTimeZoneOffset");
+                        var dateDiffText = 
+                            await calendarTextFormatter.FormatDateDiffAsync(
+                                item.CompletedQuants, item.Created + sessionTimeZoneOffset, item.Completed + sessionTimeZoneOffset, item.CalendarID.Value, useOnlyDaysInAstronomicMode: true);
+                        textBuilder.AppendFormat(" ({0})", (item.CompletedQuants.Value < 0 ? "{$Format_DateDiff_Overdue}&nbsp;" : null) + dateDiffText.Replace(" ", "&nbsp;"));
                     } #>
                     </td>
                     <!-- Completed Column end -->
@@ -723,7 +822,7 @@ async Task<Dictionary<Guid, KrHistoryItem>> GetApprovalHistoryItemsAsync(
                     <#
                     if (item.Files != null && item.Files.Count > 0
                         && (!context.Info.Get<bool>("WebClient")
-                        || !string.IsNullOrEmpty(context.Info.Get<string>("WebAddress"))))
+                            || !string.IsNullOrEmpty(context.Info.Get<string>("WebAddress"))))
                     {
                         if (!string.IsNullOrWhiteSpace(await context.GetValueFromPlaceholderAsync<string>("t:TaskHistory.Result")))
                         {

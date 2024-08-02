@@ -1,148 +1,157 @@
 ﻿{
-  "Blocks": [
-    {
-      "BlockClass": "Tessa.UI.Cards.Blocks.ColumnBlockType",
-      "BlockSettings": {
-        "AlwaysMultipleColumn": false,
-        "CollapsedByDefault": false,
-        "ColumnsCount::int": 1,
-        "DoNotCollapseWithTopBlock": false,
-        "HorizontalInterval::int": 5,
-        "IsHidden": false,
-        "LeftCaptions": false,
-        "StretchVertically": false,
-        "VerticalInterval::int": 5
-      },
-      "Caption": "Block1",
-      "Controls": [
-        {
-          "BlockSettings": {
-            "ControlSpan": true,
-            "HideCaption": false
-          },
-          "Caption": "Администратор справочников",
-          "Columns": [
-            {
-              "AggregationFormat": null,
-              "Alignment::int": 0,
-              "Caption": "Reference",
-              "ComplexColumnID::uid": "e3a3fdc3-b94c-4908-8952-e46f406cd7b0",
-              "DisplayFormat": null,
-              "Flags::int": 0,
-              "HeaderAlignment::int": 0,
-              "MaxLength": null,
-              "Order::int": 0,
-              "OwnedComplexColumnID": null,
-              "OwnedOrderColumnID": null,
-              "OwnedPhysicalColumnIDList": [],
-              "OwnedSectionID": null,
-              "PhysicalColumnIDList": [],
-              "SelectableControlName": null,
-              "Separator": null,
-              "ToolTipLineLength::int": 100
-            }
-          ],
-          "ControlSettings": {
-            "DisableLocalization": false,
-            "ExtendendLocalization": false,
-            "HideSelectorButton": false,
-            "IsAllowOpenRefs": true,
-            "IsClearFieldVisible": false,
-            "LineBreakSetting": false,
-            "ManualInput": false,
-            "ManualInputColumnID": null,
-            "MaxResultsCount::int": 15,
-            "OrderColumnID": null,
-            "ParameterAlias": "Name",
-            "RefSection": "SiAccesssettings",
-            "SearchDelay": null,
-            "TextColor": "#FF000000",
-            "TextStyle": {
-              "SelectedFontFamily": "Segoe UI",
-              "SelectedFontSize::dbl": 12.0,
-              "SelectedFontStretch": "Normal",
-              "SelectedFontStyle": "Normal",
-              "SelectedFontWeight": "Normal",
-              "SelectedTextBaseline": false,
-              "SelectedTextOverLine": false,
-              "SelectedTextStrikethrough": false,
-              "SelectedTextUnderline": false
-            },
-            "ViewAlias": "SiAccesssettings",
-            "ViewMap": null,
-            "ViewReferencePrefix": ""
-          },
-          "ControlType::int": 1,
-          "Flags::int": 0,
-          "Form": null,
-          "Name": null,
-          "Order::int": 0,
-          "RequiredText": null,
-          "SectionID::uid": "11753225-5fca-44b7-b090-b651ec8d83ab",
-          "ToolTip": null,
-          "Type::uid": "5d95340a-0f22-0d14-b9d2-a5471f607261"
-        }
-      ],
-      "FormSettings": {
-        "HideCaption": true
-      },
-      "Name": "Block1",
-      "Order::int": 0
-    }
-  ],
+  ".formatVersion::int": 2,
   "Caption": "Настройки доступа",
-  "CardTypeSections": [],
-  "CompletionOptions": [],
+  "CardTypeSections": null,
+  "CompletionOptions": null,
   "DigestFormat": null,
   "Extensions": [
     {
       "ExtensionSettings": {
-        "ColumnID::uid": "947199b6-9208-4999-8db7-3adb92615b23",
+        "ColumnID::uid": "5b68350b-62d4-4cb6-b552-fca12b74b5a6",
         "DescendingOrder": false,
         "Localize": true,
-        "SectionID::uid": "11753225-5fca-44b7-b090-b651ec8d83ab"
+        "SectionID::uid": "1f4018b2-4c44-4741-8c64-dafd9937881d"
       },
       "TypeID::uid": "10834416-179d-4fc5-89e7-82f58795167f"
     }
   ],
   "Flags::int": 387,
-  "FormClass": "Tessa.UI.Cards.Forms.DefaultFormType",
-  "Forms": [],
-  "FormSettings": {
-    "FilePreviewIsDisabled": false,
-    "HorizontalInterval::int": 10,
-    "Interval::int": 10
-  },
+  "Forms": [
+    {
+      "Blocks": [
+        {
+          "BlockClass": "Tessa.UI.Cards.Blocks.ColumnBlockType",
+          "BlockSettings": {
+            "AlwaysMultipleColumn": false,
+            "CollapsedByDefault": false,
+            "ColumnsCount::int": 1,
+            "DoNotCollapseWithTopBlock": false,
+            "HorizontalInterval::int": 5,
+            "IsHidden": false,
+            "LeftCaptions": false,
+            "StretchVertically": false,
+            "VerticalInterval::int": 5
+          },
+          "Caption": "Block1",
+          "Controls": [
+            {
+              "BlockSettings": {
+                "ControlSpan": true,
+                "HideCaption": false
+              },
+              "Caption": "Администратор справочников",
+              "Columns": [
+                {
+                  "AggregationFormat": null,
+                  "Alignment::int": 0,
+                  "Caption": "Reference",
+                  "ComplexColumnID::uid": "4aee08cd-aa35-43cd-9e2a-b3d8cf5dfe9a",
+                  "DisplayFormat": null,
+                  "Flags::int": 0,
+                  "HeaderAlignment::int": 0,
+                  "MaxLength": null,
+                  "OwnedComplexColumnID": null,
+                  "OwnedOrderColumnID": null,
+                  "OwnedPhysicalColumnIDList": null,
+                  "OwnedSectionID": null,
+                  "PhysicalColumnIDList": null,
+                  "SelectableControlName": null,
+                  "Separator": null,
+                  "ToolTipLineLength::int": 100
+                }
+              ],
+              "ControlSettings": {
+                "DisableLocalization": false,
+                "ExtendendLocalization": false,
+                "HelpMode::int": 0,
+                "HelpValue": null,
+                "HideSelectorButton": false,
+                "IsClearFieldVisible": false,
+                "LineBreakSetting": false,
+                "ManualInput": false,
+                "ManualInputColumnID": null,
+                "MaxResultsCount::int": 15,
+                "OrderColumnID": null,
+                "ParameterAlias": "Name",
+                "RefSection": [
+                  {
+                    "::single_type": "str"
+                  },
+                  "DurableRoles"
+                ],
+                "ReferenceOpenMode::int": 0,
+                "SearchDelay": null,
+                "SearchMode::int": 0,
+                "TextColor": "#FF000000",
+                "TextStyle": {
+                  "SelectedFontFamily": null,
+                  "SelectedFontSize::dbl": 12.0,
+                  "SelectedFontStretch": "Normal",
+                  "SelectedFontStyle": "Normal",
+                  "SelectedFontWeight": "Normal",
+                  "SelectedTextBaseline": false,
+                  "SelectedTextOverLine": false,
+                  "SelectedTextStrikethrough": false,
+                  "SelectedTextUnderline": false
+                },
+                "ViewAlias": "DurableRoles",
+                "ViewMap": null,
+                "ViewReferencePrefix": null
+              },
+              "ControlType::int": 1,
+              "Flags::int": 0,
+              "Form": null,
+              "Name": null,
+              "RequiredText": null,
+              "SectionID::uid": "1f4018b2-4c44-4741-8c64-dafd9937881d",
+              "ToolTip": null,
+              "Type::uid": "5d95340a-0f22-0d14-b9d2-a5471f607261"
+            }
+          ],
+          "FormSettings": {
+            "HideCaption": true
+          },
+          "Name": "Block1"
+        }
+      ],
+      "FormClass": "Tessa.UI.Cards.Forms.DefaultFormType",
+      "FormSettings": {
+        "FilePreviewIsDisabled": false,
+        "HelpMode::int": 0,
+        "HelpValue": null,
+        "HorizontalInterval::int": 10,
+        "Interval::int": 10
+      },
+      "Name": "SiAccess",
+      "TabCaption": "Настройки доступа"
+    }
+  ],
   "Group": "Settings",
-  "ID::uid": "7a8a3c59-9adb-4e3c-9d55-83b250b6cfbc",
+  "ID::uid": "ace11aba-53e2-4844-bd28-7e32464bb41f",
   "InstanceType::int": 0,
   "Name": "SiAccess",
   "SchemeItems": [
     {
       "ColumnIDList": [
         {
-          "::types": [
-            "uid"
-          ]
+          "::single_type": "uid"
         },
-        "e3a3fdc3-b94c-4908-8952-e46f406cd7b0"
+        "4aee08cd-aa35-43cd-9e2a-b3d8cf5dfe9a"
       ],
-      "SectionID::uid": "11753225-5fca-44b7-b090-b651ec8d83ab"
+      "SectionID::uid": "1f4018b2-4c44-4741-8c64-dafd9937881d"
     }
   ],
-  "TabCaption": "$CardTypes_Tabs_Card",
-  "TabOrder::int": 0,
   "Validators": [
     {
       "TypeID::uid": "9cd89f16-8482-4382-943b-1db0469481ae",
       "ValidatorSettings": {
-        "ColumnID::uid": "e3a3fdc3-b94c-4908-8952-e46f406cd7b0",
+        "ColumnID::uid": "4aee08cd-aa35-43cd-9e2a-b3d8cf5dfe9a",
         "ErrorMessage": null,
         "OrderColumnID": null,
         "ParentColumnID": null,
         "ParentSectionID": null,
         "RemoveDuplicates": true,
-        "SectionID::uid": "11753225-5fca-44b7-b090-b651ec8d83ab",
+        "SectionID::uid": "1f4018b2-4c44-4741-8c64-dafd9937881d",
         "Warning": false
       }
     }

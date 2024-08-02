@@ -2,18 +2,22 @@
   {
     ".method::int": 2,
     "Card": {
-      "Created::dtm": "2024-07-14T11:01:39.573865Z",
+      "Created::dtm": "2024-08-01T10:57:15.001739Z",
       "CreatedByID::uid": "3db19fa0-228a-497f-873a-0250bf0a4ccb",
       "CreatedByName": "Admin",
       "Files": null,
       "Flags::int": 0,
-      "ID::uid": "5df3bcac-cdfd-4c0d-b9c9-f0705a196c5c",
+      "ID::uid": "0a92002b-4c7b-4209-87c2-ea11a2724f12",
       "Info": null,
-      "Modified::dtm": "2024-07-16T08:09:38.366075Z",
+      "Modified::dtm": "2024-08-01T10:57:15.001739Z",
       "ModifiedByID::uid": "3db19fa0-228a-497f-873a-0250bf0a4ccb",
       "ModifiedByName": "Admin",
       "Permissions": null,
       "Sections": {
+        "Condition_FieldChangedCondition": {
+          ".table::int": 1,
+          "Rows": null
+        },
         "Condition_KrDepartmentCondition": {
           ".table::int": 1,
           "Rows": null
@@ -34,11 +38,39 @@
           ".table::int": 1,
           "Rows": null
         },
+        "Condition_KrTaskTypeConditionTaskRoles": {
+          ".table::int": 1,
+          "Rows": null
+        },
         "Condition_KrUsersCondition": {
           ".table::int": 1,
           "Rows": null
         },
+        "Condition_TagCondition": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "Condition_TaskConditionCompletionOptions": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "Condition_TaskConditionFunctionRoles": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "Condition_TaskConditionTaskKinds": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "Condition_TaskConditionTaskTypes": {
+          ".table::int": 1,
+          "Rows": null
+        },
         "ConditionsVirtual": {
+          ".table::int": 1,
+          "Rows": null
+        },
+        "KrPermissionAclGenerationRules": {
           ".table::int": 1,
           "Rows": null
         },
@@ -66,11 +98,11 @@
           ".table::int": 1,
           "Rows": null
         },
-        "KrPermissionExtendedMandatoryRules": {
+        "KrPermissionExtendedMandatoryRuleTypes": {
           ".table::int": 1,
           "Rows": null
         },
-        "KrPermissionExtendedMandatoryRuleTypes": {
+        "KrPermissionExtendedMandatoryRules": {
           ".table::int": 1,
           "Rows": null
         },
@@ -78,11 +110,11 @@
           ".table::int": 1,
           "Rows": null
         },
-        "KrPermissionExtendedTaskRules": {
+        "KrPermissionExtendedTaskRuleTypes": {
           ".table::int": 1,
           "Rows": null
         },
-        "KrPermissionExtendedTaskRuleTypes": {
+        "KrPermissionExtendedTaskRules": {
           ".table::int": 1,
           "Rows": null
         },
@@ -97,12 +129,34 @@
               "IsContext": false,
               "RoleID::uid": "7ff52dc0-ff6a-4c9d-ba25-b562c370004d",
               "RoleName": "Все сотрудники",
-              "RowID::uid": "5e61cf7d-1dc8-4459-85cd-815df92604f6"
+              "RowID::uid": "d0f7763b-cc01-4517-b8cd-ae143bf231d8"
+            }
+          ]
+        },
+        "KrPermissionStates": {
+          ".table::int": 1,
+          "Rows": [
+            {
+              "RowID::uid": "1410e479-7942-4d82-b6f6-a0615be58eaa",
+              "StateID::int": 1000,
+              "StateName": "$RefGroups_Group_AllStates"
+            }
+          ]
+        },
+        "KrPermissionTypes": {
+          ".table::int": 1,
+          "Rows": [
+            {
+              "RowID::uid": "6727ee55-b696-4bf6-957b-28a38eb81e50",
+              "TypeCaption": "$KrTypes_DocTypes_Order",
+              "TypeID::uid": "77fd0adc-24d9-426f-9397-c1ee0d175b93",
+              "TypeIsDocType": true
             }
           ]
         },
         "KrPermissions": {
           "Fields": {
+            "AclGenerationRules": "",
             "CanAddFiles": false,
             "CanAddTopics": false,
             "CanCreateCard": false,
@@ -119,6 +173,8 @@
             "CanEditOwnFiles": false,
             "CanEditRoute": false,
             "CanFullRecalcRoute": false,
+            "CanModifyAllTaskAssignedRoles": false,
+            "CanModifyOwnTaskAssignedRoles": false,
             "CanReadAllTopics": false,
             "CanReadAndSendMessageInAllTopics": false,
             "CanReadCard": true,
@@ -135,16 +191,16 @@
                 "InvertCondition": false,
                 "InvertConditionString": "$Notification_ConditionDescription_Include",
                 "Order::int": 0,
-                "RowID::uid": "679aed84-0df7-4507-9214-f9aec97ba28a",
+                "RowID::uid": "fc05d36e-1866-4360-87b9-975fefb8b1bf",
                 "Settings": {
                   "KrDepartmentCondition": {
                     ".table::int": 1,
                     "Rows": [
                       {
-                        "ConditionRowID::uid": "679aed84-0df7-4507-9214-f9aec97ba28a",
-                        "DepartmentID::uid": "02078681-f8d8-4dae-b670-34de715d6d85",
+                        "ConditionRowID::uid": "fc05d36e-1866-4360-87b9-975fefb8b1bf",
+                        "DepartmentID::uid": "b5db7f2b-6267-4b8b-945a-85e437bc4074",
                         "DepartmentName": "Кадры",
-                        "RowID::uid": "6cd949fa-cc2d-405b-a855-661b48733901"
+                        "RowID::uid": "08a126bb-0cd2-407a-8002-ad746a6b6949"
                       }
                     ]
                   },
@@ -168,87 +224,6 @@
             "States": null,
             "Types": null
           }
-        },
-        "KrPermissionStates": {
-          ".table::int": 1,
-          "Rows": [
-            {
-              "RowID::uid": "5c854e40-6b24-444f-b4e1-152965c72d5a",
-              "StateID::int": 5,
-              "StateName": "$KrStates_Doc_Canceled"
-            },
-            {
-              "RowID::uid": "92fdc89e-e135-49cd-9865-ef89b8bfb1a8",
-              "StateID::int": 6,
-              "StateName": "$KrStates_Doc_Registered"
-            },
-            {
-              "RowID::uid": "d529934d-4e1c-4635-8118-f2bb482b6681",
-              "StateID::int": 4,
-              "StateName": "$KrStates_Doc_Editing"
-            },
-            {
-              "RowID::uid": "91ce4627-2f53-4b55-914d-132237d1f1ad",
-              "StateID::int": 10,
-              "StateName": "$KrStates_Doc_Signing"
-            },
-            {
-              "RowID::uid": "e5ed9ecd-d4b7-47f5-a4d6-502646c159fe",
-              "StateID::int": 7,
-              "StateName": "$KrStates_Doc_Registration"
-            },
-            {
-              "RowID::uid": "53e83a05-d522-4ff3-9788-dd3a123b47ea",
-              "StateID::int": 1,
-              "StateName": "$KrStates_Doc_Active"
-            },
-            {
-              "RowID::uid": "cbfc423f-c75a-4ad6-90df-921bfd0e7acc",
-              "StateID::int": 3,
-              "StateName": "$KrStates_Doc_Disapproved"
-            },
-            {
-              "RowID::uid": "8c85c5b4-fc5d-44ba-b2c2-01c3b212e5a4",
-              "StateID::int": 9,
-              "StateName": "$KrStates_Doc_Declined"
-            },
-            {
-              "RowID::uid": "9cce9a7d-fcac-436e-8960-cc1dff9d3f8d",
-              "StateID::int": 8,
-              "StateName": "$KrStates_Doc_Signed"
-            },
-            {
-              "RowID::uid": "6a8ffb46-9402-4403-ac74-82aaf582652d",
-              "StateID::int": 0,
-              "StateName": "$KrStates_Doc_Draft"
-            },
-            {
-              "RowID::uid": "83e26aa8-f646-4962-b5e4-4f7396025fe2",
-              "StateID::int": 2,
-              "StateName": "$KrStates_Doc_Approved"
-            },
-            {
-              "RowID::uid": "85776c52-f4fb-4a9a-a7c9-7aec2e98602d",
-              "StateID::int": 11,
-              "StateName": "Отклонено"
-            },
-            {
-              "RowID::uid": "98600f62-d6a8-44c5-bc96-b111e1d74684",
-              "StateID::int": 12,
-              "StateName": "На рассмотрении"
-            }
-          ]
-        },
-        "KrPermissionTypes": {
-          ".table::int": 1,
-          "Rows": [
-            {
-              "RowID::uid": "b3d8215d-4c97-46a8-be3e-8ed34a2e344f",
-              "TypeCaption": "$KrTypes_DocTypes_Order",
-              "TypeID::uid": "77fd0adc-24d9-426f-9397-c1ee0d175b93",
-              "TypeIsDocType": true
-            }
-          ]
         }
       },
       "TaskHistory": null,
@@ -262,7 +237,7 @@
     },
     "FileMapping": null,
     "Info": {
-      ".importVersion::int": 14
+      ".importVersion::int": 1
     }
   }
 ]

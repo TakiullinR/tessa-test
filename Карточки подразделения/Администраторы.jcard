@@ -2,14 +2,14 @@
   {
     ".method::int": 2,
     "Card": {
-      "Created::dtm": "2024-07-16T19:22:48.060651Z",
+      "Created::dtm": "2024-07-31T07:27:55.223651Z",
       "CreatedByID::uid": "3db19fa0-228a-497f-873a-0250bf0a4ccb",
       "CreatedByName": "Admin",
       "Files": null,
       "Flags::int": 0,
-      "ID::uid": "677d294b-873c-4517-8003-e29c396748e7",
+      "ID::uid": "5324c83b-a3f6-44c5-b241-2e58c144dce7",
       "Info": null,
-      "Modified::dtm": "2024-07-16T19:22:50.386951Z",
+      "Modified::dtm": "2024-07-31T07:28:00.272467Z",
       "ModifiedByID::uid": "3db19fa0-228a-497f-873a-0250bf0a4ccb",
       "ModifiedByName": "Admin",
       "Permissions": null,
@@ -24,9 +24,20 @@
           ".table::int": 1,
           "Rows": null
         },
-        "RoleDeputiesVirtual": {
+        "RoleUsers": {
           ".table::int": 1,
           "Rows": null
+        },
+        "RoleUsersVirtual": {
+          ".table::int": 1,
+          "Rows": [
+            {
+              ".state::int": 2,
+              "RowID::uid": "22307d98-54e6-407d-9889-5a98db41ee6c",
+              "UserID::uid": "3db19fa0-228a-497f-873a-0250bf0a4ccb",
+              "UserName": "Admin"
+            }
+          ]
         },
         "Roles": {
           "Fields": {
@@ -37,7 +48,11 @@
             "AdSyncID": null,
             "AdSyncIndependent": false,
             "AdSyncWhenChanged": null,
+            "CalendarID::uid": "64b9230d-5422-466d-bb19-f9882bb87b78",
+            "CalendarName": "$Calendars_DefaultCalendar",
+            "DeputiesExpired::dtm": "9999-12-31T00:00:00Z",
             "Description": null,
+            "DisableDeputies": false,
             "ExternalID": null,
             "Hidden": true,
             "InheritTimeZone": true,
@@ -50,21 +65,6 @@
             "TimeZoneUtcOffsetMinutes::int": 180,
             "TypeID::int": 2
           }
-        },
-        "RoleUsers": {
-          ".table::int": 1,
-          "Rows": null
-        },
-        "RoleUsersVirtual": {
-          ".table::int": 1,
-          "Rows": [
-            {
-              ".state::int": 2,
-              "RowID::uid": "662c5919-9336-4552-9820-e24f922188c2",
-              "UserID::uid": "3db19fa0-228a-497f-873a-0250bf0a4ccb",
-              "UserName": "Admin"
-            }
-          ]
         }
       },
       "TaskHistory": null,
